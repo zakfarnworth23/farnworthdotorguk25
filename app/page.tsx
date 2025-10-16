@@ -73,7 +73,7 @@ export default function Home() {
               <div className="space-y-6 max-w-md">
                 <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed">
                   ICT Technician, passionate about leveraging technology for the
-                  <span className="text-foreground"> greater</span>,<span className="text-foreground"> good.</span>
+                  <span className="text-foreground"> greater good.</span>
                 </p>
 
                 <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 text-sm text-muted-foreground">
@@ -90,7 +90,7 @@ export default function Home() {
               <div className="space-y-4">
                 <div className="text-sm text-muted-foreground font-mono">CURRENTLY</div>
                 <div className="space-y-2">
-                  <div className="text-foreground">ICT Technicianr</div>
+                  <div className="text-foreground">ICT Technician</div>
                   <div className="text-muted-foreground">@ Albany Learning Trust</div>
                   <div className="text-xs text-muted-foreground">March 2025 — Present</div>
                 </div>
@@ -99,7 +99,7 @@ export default function Home() {
               <div className="space-y-4">
                 <div className="text-sm text-muted-foreground font-mono">FOCUS</div>
                 <div className="flex flex-wrap gap-2">
-                  {["HubL", "React", "TypeScript", "HubSpot CMS", "Node.js"].map((skill) => (
+                  {["Active Directory", "Microsoft 365", "Microsoft Intune", "HaloITSM", "Powershell"].map((skill) => (
                     <span
                       key={skill}
                       className="px-3 py-1 text-xs border border-border rounded-full hover:border-muted-foreground/50 transition-colors duration-300"
@@ -120,40 +120,26 @@ export default function Home() {
         >
           <div className="space-y-12 sm:space-y-16">
             <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
-              <h2 className="text-3xl sm:text-4xl font-light">Selected Work</h2>
-              <div className="text-sm text-muted-foreground font-mono">2019 — 2025</div>
+              <h2 className="text-3xl sm:text-4xl font-light">Work Experience</h2>
+              <div className="text-sm text-muted-foreground font-mono">2023 — 2025</div>
             </div>
 
             <div className="space-y-8 sm:space-y-12">
               {[
                 {
                   year: "2023",
-                  role: "Senior Frontend Engineer",
-                  company: "Vercel",
-                  description: "Leading frontend architecture for developer tools and AI-powered features.",
+                  role: "IT Apprentice",
+                  company: "The Quill C of E Trust",
+                  description: "Led our cloud migration, Intune rollout, automation systems, and HaloITSM implementation; awarded 'Highly Commended' BCS for IT Infrastructure.",
                   tech: ["React", "TypeScript", "Next.js"],
                 },
                 {
-                  year: "2022",
-                  role: "Frontend Engineer",
-                  company: "Linear",
-                  description: "Built performant interfaces for project management and team collaboration.",
+                  year: "2025",
+                  role: "ICT Technician",
+                  company: "ALbany Learning Trust",
+                  description: "",
                   tech: ["React", "GraphQL", "Framer Motion"],
-                },
-                {
-                  year: "2021",
-                  role: "Full Stack Developer",
-                  company: "Stripe",
-                  description: "Developed payment infrastructure and merchant-facing dashboard features.",
-                  tech: ["Ruby", "React", "PostgreSQL"],
-                },
-                {
-                  year: "2019",
-                  role: "Software Engineer",
-                  company: "Airbnb",
-                  description: "Created booking flow optimizations and host management tools.",
-                  tech: ["React", "Node.js", "MySQL"],
-                },
+                }
               ].map((job, index) => (
                 <div
                   key={index}
@@ -196,15 +182,15 @@ export default function Home() {
 
               <div className="space-y-6">
                 <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed">
-                  Always interested in new opportunities, collaborations, and conversations about technology and design.
+                  Always interested in new opportunities, collaborations, and conversations about technology. 
                 </p>
 
                 <div className="space-y-4">
                   <Link
-                    href="mailto:test@example.com"
+                    href="mailto:zak@farnworth.org.uk"
                     className="group flex items-center gap-3 text-foreground hover:text-muted-foreground transition-colors duration-300"
                   >
-                    <span className="text-base sm:text-lg">test@example.com</span>
+                    <span className="text-base sm:text-lg">zak@farnworth.org.uk</span>
                     <svg
                       className="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300"
                       fill="none"
@@ -223,10 +209,9 @@ export default function Home() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {[
-                  { name: "GitHub", handle: "@felixmacaspac", url: "#" },
-                  { name: "v0.dev", handle: "@felixmacaspac", url: "#" },
-                  { name: "HubSpot Community", handle: "@felixmacaspac", url: "#" },
-                  { name: "LinkedIn", handle: "felixmacaspac", url: "#" },
+                  { name: "GitHub", handle: "@zakfarnworth23", url: "#" },
+                  { name: "LinkedIn", handle: "zakfarnworth", url: "#" },
+                  { name: "Instagram", handle: "@zakfarnworthofficial", url: "#" }
                 ].map((social) => (
                   <Link
                     key={social.name}
