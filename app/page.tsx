@@ -73,7 +73,21 @@ export default function Home() {
               <div className="space-y-6 max-w-md">
                 <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed">
                   ICT Technician, passionate about leveraging technology for the
-                  <span className="text-foreground"> greater good.</span>
+                  <span className="relative inline-block group/stars text-foreground ml-1">
+                    greater good.
+                    <span className="absolute -top-1 -left-1 w-2 h-2 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300">
+                      <span className="absolute inset-0 animate-twinkle">✦</span>
+                    </span>
+                    <span className="absolute -top-2 right-2 w-2 h-2 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300 delay-100">
+                      <span className="absolute inset-0 animate-twinkle-delayed">✦</span>
+                    </span>
+                    <span className="absolute -bottom-1 left-4 w-2 h-2 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300 delay-200">
+                      <span className="absolute inset-0 animate-twinkle">✦</span>
+                    </span>
+                    <span className="absolute -bottom-2 right-6 w-2 h-2 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300 delay-150">
+                      <span className="absolute inset-0 animate-twinkle-delayed">✦</span>
+                    </span>
+                  </span>
                 </p>
 
                 <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 text-sm text-muted-foreground">
@@ -152,7 +166,22 @@ export default function Home() {
                   </p>
                   <p className="text-foreground">
                     When I'm not working with technology, I'm exploring new ways to automate processes and improve
-                    systems for the greater good.
+                    systems for the{" "}
+                    <span className="relative inline-block group/stars">
+                      greater good.
+                      <span className="absolute -top-1 -left-1 w-2 h-2 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300">
+                        <span className="absolute inset-0 animate-twinkle">✦</span>
+                      </span>
+                      <span className="absolute -top-2 right-2 w-2 h-2 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300 delay-100">
+                        <span className="absolute inset-0 animate-twinkle-delayed">✦</span>
+                      </span>
+                      <span className="absolute -bottom-1 left-4 w-2 h-2 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300 delay-200">
+                        <span className="absolute inset-0 animate-twinkle">✦</span>
+                      </span>
+                      <span className="absolute -bottom-2 right-6 w-2 h-2 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300 delay-150">
+                        <span className="absolute inset-0 animate-twinkle-delayed">✦</span>
+                      </span>
+                    </span>
                   </p>
                 </div>
 
