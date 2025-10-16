@@ -131,14 +131,14 @@ export default function Home() {
                   role: "IT Apprentice",
                   company: "The Quill C of E Trust",
                   description: "Led our cloud migration, Intune rollout, automation systems, and HaloITSM implementation; awarded 'Highly Commended' BCS for IT Infrastructure.",
-                  tech: ["React", "TypeScript", "Next.js"],
+                  tech: ["Active Directory", "Microsoft 365", "Microsoft Intune", "HaloITSM"],
                 },
                 {
                   year: "2025",
                   role: "ICT Technician",
                   company: "ALbany Learning Trust",
                   description: "",
-                  tech: ["React", "GraphQL", "Framer Motion"],
+                  tech: ["Active Directory", "Microsoft 365", "Microsoft Deployment Toolkit", "Asset Management"],
                 }
               ].map((job, index) => (
                 <div
