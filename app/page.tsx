@@ -40,7 +40,7 @@ export default function Home() {
     <div className="min-h-screen bg-background text-foreground relative">
       <nav className="fixed left-8 top-1/2 -translate-y-1/2 z-10 hidden lg:block">
         <div className="flex flex-col gap-4">
-          {["intro", "about", "work", "thoughts", "connect"].map((section) => (
+          {["intro", "about", "work", "connect"].map((section) => (
             <button
               key={section}
               onClick={() => document.getElementById(section)?.scrollIntoView({ behavior: "smooth" })}
@@ -143,7 +143,7 @@ export default function Home() {
                   </p>
                   <p>
                     My journey in IT began with an apprenticeship at The Quill C of E Trust, where I led cloud
-                    migrations, Intune rollouts, and automation systems. This experience earned me the 'Highly
+                    migrations, Intune rollouts, automation systems, and HaloITSM implementation; awarded 'Highly
                     Commended' BCS award for IT Infrastructure.
                   </p>
                   <p>
