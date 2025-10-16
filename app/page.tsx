@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
+import { ContactForm } from "@/components/contact-form" // Import the ContactForm component
 
 export default function Home() {
   const [isDark, setIsDark] = useState(true)
@@ -357,6 +358,11 @@ export default function Home() {
                     </svg>
                   </Link>
                 </div>
+              </div>
+
+              <div className="pt-8 border-t border-border">
+                <div className="text-sm text-muted-foreground font-mono mb-6">SEND A MESSAGE</div>
+                <ContactForm />
               </div>
             </div>
 
