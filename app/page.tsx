@@ -40,7 +40,7 @@ export default function Home() {
     <div className="min-h-screen bg-background text-foreground relative">
       <nav className="fixed left-8 top-1/2 -translate-y-1/2 z-10 hidden lg:block">
         <div className="flex flex-col gap-4">
-          {["intro", "about", "work", "connect"].map((section) => (
+          {["intro", "about", "work", "media", "connect"].map((section) => (
             <button
               key={section}
               onClick={() => document.getElementById(section)?.scrollIntoView({ behavior: "smooth" })}
@@ -246,7 +246,63 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="connect" ref={(el) => (sectionsRef.current[3] = el)} className="py-20 sm:py-32 opacity-0">
+        <section
+          id="media"
+          ref={(el) => (sectionsRef.current[3] = el)}
+          className="min-h-screen py-20 sm:py-32 opacity-0"
+        >
+          <div className="space-y-12 sm:space-y-16">
+            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+              <h2 className="text-3xl sm:text-4xl font-light">Media Center</h2>
+              <div className="text-sm text-muted-foreground font-mono">PRESS & RESOURCES</div>
+            </div>
+
+            <div className="grid lg:grid-cols-2 gap-12 sm:gap-16">
+              <div className="space-y-6">
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  Professional resources for external trusts, schools, and media inquiries. Access my CV, headshots, and
+                  other materials.
+                </p>
+
+                <Link
+                  href="/media"
+                  className="group inline-flex items-center gap-3 px-6 py-3 border border-border rounded-lg hover:border-muted-foreground/50 transition-all duration-300"
+                >
+                  <span className="text-foreground">Visit Media Center</span>
+                  <svg
+                    className="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </Link>
+              </div>
+
+              <div className="space-y-4">
+                <div className="text-sm text-muted-foreground font-mono mb-4">AVAILABLE RESOURCES</div>
+                <div className="space-y-3">
+                  {[
+                    { name: "Curriculum Vitae", type: "PDF Document" },
+                    { name: "Professional Headshots", type: "High-Resolution Images" },
+                    { name: "Biography", type: "Text & Media" },
+                  ].map((resource) => (
+                    <div
+                      key={resource.name}
+                      className="p-4 border border-border rounded-lg hover:border-muted-foreground/50 transition-colors duration-300"
+                    >
+                      <div className="text-foreground">{resource.name}</div>
+                      <div className="text-sm text-muted-foreground">{resource.type}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="connect" ref={(el) => (sectionsRef.current[4] = el)} className="py-20 sm:py-32 opacity-0">
           <div className="grid lg:grid-cols-2 gap-12 sm:gap-16">
             <div className="space-y-6 sm:space-y-8">
               <h2 className="text-3xl sm:text-4xl font-light">Let's Connect</h2>
