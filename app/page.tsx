@@ -128,7 +128,7 @@ export default function Home() {
               <div className="lg:col-span-2 flex items-start">
                 <div className="relative w-full aspect-[3/4] overflow-hidden rounded-lg border border-border">
                   <img
-                    src="/official-photo.JPG"
+                    src="/officialphoto.jpg"
                     alt="Zak Farnworth"
                     className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
                   />
