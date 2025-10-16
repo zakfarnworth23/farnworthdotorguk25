@@ -46,38 +46,36 @@ export function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="space-y-2">
-          <label htmlFor="name" className="text-sm text-muted-foreground">
-            Name *
-          </label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-            className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:border-muted-foreground/50 transition-colors duration-300 text-foreground"
-            placeholder="Your name"
-          />
-        </div>
+      <div className="space-y-2">
+        <label htmlFor="name" className="text-sm text-muted-foreground">
+          Name *
+        </label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+          required
+          className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:border-muted-foreground/50 transition-colors duration-300 text-foreground"
+          placeholder="Your name"
+        />
+      </div>
 
-        <div className="space-y-2">
-          <label htmlFor="email" className="text-sm text-muted-foreground">
-            Email *
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-            className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:border-muted-foreground/50 transition-colors duration-300 text-foreground"
-            placeholder="your.email@example.com"
-          />
-        </div>
+      <div className="space-y-2">
+        <label htmlFor="email" className="text-sm text-muted-foreground">
+          Email *
+        </label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          required
+          className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:border-muted-foreground/50 transition-colors duration-300 text-foreground"
+          placeholder="your.email@example.com"
+        />
       </div>
 
       <div className="space-y-2">
