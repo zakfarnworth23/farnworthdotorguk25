@@ -40,7 +40,7 @@ export default function Home() {
     <div className="min-h-screen bg-background text-foreground relative">
       <nav className="fixed left-8 top-1/2 -translate-y-1/2 z-10 hidden lg:block">
         <div className="flex flex-col gap-4">
-          {["intro", "work", "thoughts", "connect"].map((section) => (
+          {["intro", "about", "work", "thoughts", "connect"].map((section) => (
             <button
               key={section}
               onClick={() => document.getElementById(section)?.scrollIntoView({ behavior: "smooth" })}
@@ -114,8 +114,78 @@ export default function Home() {
         </header>
 
         <section
-          id="work"
+          id="about"
           ref={(el) => (sectionsRef.current[1] = el)}
+          className="min-h-screen py-20 sm:py-32 opacity-0"
+        >
+          <div className="space-y-12 sm:space-y-16">
+            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+              <h2 className="text-3xl sm:text-4xl font-light">About Me</h2>
+              <div className="text-sm text-muted-foreground font-mono">WHO I AM</div>
+            </div>
+
+            <div className="grid lg:grid-cols-5 gap-12 sm:gap-16">
+              <div className="lg:col-span-2 flex items-start">
+                <div className="relative w-full aspect-[3/4] overflow-hidden rounded-lg border border-border">
+                  <img
+                    src="/professional-portrait-photo-minimalist.jpg"
+                    alt="Zak Farnworth"
+                    className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                  />
+                </div>
+              </div>
+
+              <div className="lg:col-span-3 space-y-6">
+                <div className="space-y-4 text-lg text-muted-foreground leading-relaxed">
+                  <p>
+                    I'm an ICT Technician based in Bolton, United Kingdom, with a passion for leveraging technology to
+                    make a positive impact in education and beyond.
+                  </p>
+                  <p>
+                    My journey in IT began with an apprenticeship at The Quill C of E Trust, where I led cloud
+                    migrations, Intune rollouts, and automation systems. This experience earned me the 'Highly
+                    Commended' BCS award for IT Infrastructure.
+                  </p>
+                  <p>
+                    Currently, I'm working at Albany Learning Trust, where I continue to develop my expertise in Active
+                    Directory, Microsoft 365, and modern IT infrastructure management.
+                  </p>
+                  <p className="text-foreground">
+                    When I'm not working with technology, I'm exploring new ways to automate processes and improve
+                    systems for the greater good.
+                  </p>
+                </div>
+
+                <div className="pt-6 border-t border-border">
+                  <div className="text-sm text-muted-foreground font-mono mb-4">EXPERTISE</div>
+                  <div className="grid grid-cols-2 gap-3">
+                    {[
+                      "Active Directory",
+                      "Microsoft 365",
+                      "Microsoft Intune",
+                      "HaloITSM",
+                      "PowerShell",
+                      "Cloud Migration",
+                      "Automation",
+                      "IT Infrastructure",
+                    ].map((skill) => (
+                      <div
+                        key={skill}
+                        className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300"
+                      >
+                        → {skill}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section
+          id="work"
+          ref={(el) => (sectionsRef.current[2] = el)}
           className="min-h-screen py-20 sm:py-32 opacity-0"
         >
           <div className="space-y-12 sm:space-y-16">
@@ -130,7 +200,8 @@ export default function Home() {
                   year: "2023",
                   role: "IT Apprentice",
                   company: "The Quill C of E Trust",
-                  description: "Led our cloud migration, Intune rollout, automation systems, and HaloITSM implementation; awarded 'Highly Commended' BCS for IT Infrastructure.",
+                  description:
+                    "Led our cloud migration, Intune rollout, automation systems, and HaloITSM implementation; awarded 'Highly Commended' BCS for IT Infrastructure.",
                   tech: ["Active Directory", "Microsoft 365", "Microsoft Intune", "HaloITSM"],
                 },
                 {
@@ -139,7 +210,7 @@ export default function Home() {
                   company: "ALbany Learning Trust",
                   description: "",
                   tech: ["Active Directory", "Microsoft 365", "Microsoft Deployment Toolkit", "Asset Management"],
-                }
+                },
               ].map((job, index) => (
                 <div
                   key={index}
@@ -182,7 +253,7 @@ export default function Home() {
 
               <div className="space-y-6">
                 <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed">
-                  Always interested in new opportunities, collaborations, and conversations about technology. 
+                  Always interested in new opportunities, collaborations, and conversations about technology.
                 </p>
 
                 <div className="space-y-4">
@@ -211,7 +282,11 @@ export default function Home() {
                 {[
                   { name: "LinkedIn", handle: "zakfarnworth", url: "https://www.linkedin.com/in/zakfarnworth" },
                   { name: "GitHub", handle: "@zakfarnworth23", url: "https://github.com/zakfarnworth23" },
-                  { name: "Instagram", handle: "@zakfarnworthofficial", url: "https://www.instagram.com/zakfarnworthofficial?igsh=MWQ0MnZqcGtxcjhnYw%3D%3D&utm_source=qr" }
+                  {
+                    name: "Instagram",
+                    handle: "@zakfarnworthofficial",
+                    url: "https://www.instagram.com/zakfarnworthofficial?igsh=MWQ0MnZqcGtxcjhnYw%3D%3D&utm_source=qr",
+                  },
                 ].map((social) => (
                   <Link
                     key={social.name}
