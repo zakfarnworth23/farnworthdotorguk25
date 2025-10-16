@@ -209,9 +209,9 @@ export default function Home() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {[
-                  { name: "GitHub", handle: "@zakfarnworth23", url: "#" },
-                  { name: "LinkedIn", handle: "zakfarnworth", url: "#" },
-                  { name: "Instagram", handle: "@zakfarnworthofficial", url: "#" }
+                  { name: "LinkedIn", handle: "zakfarnworth", url: "https://www.linkedin.com/in/zakfarnworth" },
+                  { name: "GitHub", handle: "@zakfarnworth23", url: "https://github.com/zakfarnworth23" },
+                  { name: "Instagram", handle: "@zakfarnworthofficial", url: "https://www.instagram.com/zakfarnworthofficial?igsh=MWQ0MnZqcGtxcjhnYw%3D%3D&utm_source=qr" }
                 ].map((social) => (
                   <Link
                     key={social.name}
