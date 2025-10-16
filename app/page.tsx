@@ -121,14 +121,14 @@ export default function Home() {
           <div className="space-y-12 sm:space-y-16">
             <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
               <h2 className="text-3xl sm:text-4xl font-light">About Me</h2>
-              <div className="text-sm text-muted-foreground font-mono">WHO I AM</div>
+              <div className="text-sm text-muted-foreground font-mono">WHO AM I</div>
             </div>
 
             <div className="grid lg:grid-cols-5 gap-12 sm:gap-16">
               <div className="lg:col-span-2 flex items-start">
                 <div className="relative w-full aspect-[3/4] overflow-hidden rounded-lg border border-border">
                   <img
-                    src="/professional-portrait-photo-minimalist.jpg"
+                    src="/official-photo.jpg"
                     alt="Zak Farnworth"
                     className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
                   />
