@@ -73,18 +73,18 @@ export default function Home() {
               <div className="space-y-6 max-w-md">
                 <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed">
                   ICT Technician, passionate about leveraging technology for the
-                  <span className="relative inline-block group/stars text-foreground ml-1">
+                  <span className="relative inline-block group/stars text-foreground ml-1 z-10">
                     greater good.
-                    <span className="absolute -top-1 -left-1 w-2 h-2 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300">
+                    <span className="absolute -top-1 -left-1 w-2 h-2 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300 -z-10">
                       <span className="absolute inset-0 animate-twinkle">✦</span>
                     </span>
-                    <span className="absolute -top-2 right-2 w-2 h-2 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300 delay-100">
+                    <span className="absolute -top-2 right-2 w-2 h-2 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300 delay-100 -z-10">
                       <span className="absolute inset-0 animate-twinkle-delayed">✦</span>
                     </span>
-                    <span className="absolute -bottom-1 left-4 w-2 h-2 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300 delay-200">
+                    <span className="absolute -bottom-1 left-4 w-2 h-2 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300 delay-200 -z-10">
                       <span className="absolute inset-0 animate-twinkle">✦</span>
                     </span>
-                    <span className="absolute -bottom-2 right-6 w-2 h-2 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300 delay-150">
+                    <span className="absolute -bottom-2 right-6 w-2 h-2 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300 delay-150 -z-10">
                       <span className="absolute inset-0 animate-twinkle-delayed">✦</span>
                     </span>
                   </span>
@@ -167,18 +167,18 @@ export default function Home() {
                   <p className="text-foreground">
                     When I'm not working with technology, I'm exploring new ways to automate processes and improve
                     systems for the{" "}
-                    <span className="relative inline-block group/stars">
+                    <span className="relative inline-block group/stars z-10">
                       greater good.
-                      <span className="absolute -top-1 -left-1 w-2 h-2 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300">
+                      <span className="absolute -top-1 -left-1 w-2 h-2 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300 -z-10">
                         <span className="absolute inset-0 animate-twinkle">✦</span>
                       </span>
-                      <span className="absolute -top-2 right-2 w-2 h-2 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300 delay-100">
+                      <span className="absolute -top-2 right-2 w-2 h-2 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300 delay-100 -z-10">
                         <span className="absolute inset-0 animate-twinkle-delayed">✦</span>
                       </span>
-                      <span className="absolute -bottom-1 left-4 w-2 h-2 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300 delay-200">
+                      <span className="absolute -bottom-1 left-4 w-2 h-2 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300 delay-200 -z-10">
                         <span className="absolute inset-0 animate-twinkle">✦</span>
                       </span>
-                      <span className="absolute -bottom-2 right-6 w-2 h-2 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300 delay-150">
+                      <span className="absolute -bottom-2 right-6 w-2 h-2 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300 delay-150 -z-10">
                         <span className="absolute inset-0 animate-twinkle-delayed">✦</span>
                       </span>
                     </span>
@@ -426,7 +426,8 @@ export default function Home() {
                 ) : (
                   <svg
                     className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors duration-300"
-                    fill="currentColor"
+                    fill="none"
+                    stroke="currentColor"
                     viewBox="0 0 20 20"
                   >
                     <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
