@@ -360,8 +360,8 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="pt-8 border-t border-border">
-                <div className="text-sm text-muted-foreground font-mono mb-6">SEND A MESSAGE</div>
+              <div className="pt-6 border-t border-border">
+                <div className="text-sm text-muted-foreground font-mono mb-4">SEND A MESSAGE</div>
                 <ContactForm />
               </div>
             </div>
