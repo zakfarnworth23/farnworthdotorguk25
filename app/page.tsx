@@ -313,7 +313,7 @@ export default function Home() {
               <div className="flex flex-col gap-2">
                 <div className="text-xs text-muted-foreground">Office of Zak Farnworth</div>
                 <img
-                  src="/minimalist-office-logo.jpg"
+                  src="/OOZF_Logo.png"
                   alt="Office of Zak Farnworth Logo"
                   className="h-8 w-auto opacity-70 hover:opacity-100 transition-opacity duration-300"
                 />
