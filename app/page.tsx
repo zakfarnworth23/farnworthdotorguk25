@@ -1,8 +1,9 @@
 "use client"
 
 import Link from "next/link"
-import { useEffect, useRef, useState } from "react"
-import { ContactForm } from "@/components/contact-form" // Import the ContactForm component
+import { useEffect, useRef, useState, Suspense } from "react"
+import { ContactForm } from "@/components/contact-form"
+import { LatestNewsSection } from "@/components/latest-news-section"
 
 export default function Home() {
   const [isDark, setIsDark] = useState(true)
@@ -41,7 +42,7 @@ export default function Home() {
     <div className="min-h-screen bg-background text-foreground relative">
       <nav className="fixed left-8 top-1/2 -translate-y-1/2 z-10 hidden lg:block">
         <div className="flex flex-col gap-4">
-          {["intro", "about", "work", "media", "connect"].map((section) => (
+          {["intro", "about", "work", "news", "media", "connect"].map((section) => (
             <button
               key={section}
               onClick={() => document.getElementById(section)?.scrollIntoView({ behavior: "smooth" })}
@@ -277,8 +278,28 @@ export default function Home() {
         </section>
 
         <section
-          id="media"
+          id="news"
           ref={(el) => (sectionsRef.current[3] = el)}
+          className="min-h-screen py-20 sm:py-32 opacity-0"
+        >
+          <Suspense
+            fallback={
+              <div className="space-y-12 sm:space-y-16">
+                <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+                  <h2 className="text-3xl sm:text-4xl font-light">Latest News</h2>
+                  <div className="text-sm text-muted-foreground font-mono">UPDATES & PRESS</div>
+                </div>
+                <div className="text-muted-foreground">Loading...</div>
+              </div>
+            }
+          >
+            <LatestNewsSection />
+          </Suspense>
+        </section>
+
+        <section
+          id="media"
+          ref={(el) => (sectionsRef.current[4] = el)}
           className="min-h-screen py-20 sm:py-32 opacity-0"
         >
           <div className="space-y-12 sm:space-y-16">
@@ -332,7 +353,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="connect" ref={(el) => (sectionsRef.current[4] = el)} className="py-20 sm:py-32 opacity-0">
+        <section id="connect" ref={(el) => (sectionsRef.current[5] = el)} className="py-20 sm:py-32 opacity-0">
           <div className="grid lg:grid-cols-2 gap-12 sm:gap-16">
             <div className="space-y-6 sm:space-y-8">
               <h2 className="text-3xl sm:text-4xl font-light">Let's Connect</h2>
@@ -425,7 +446,7 @@ export default function Home() {
                   >
                     <path
                       fillRule="evenodd"
-                      d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                      d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707a1 1 0 001.414 0zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
                       clipRule="evenodd"
                     />
                   </svg>
