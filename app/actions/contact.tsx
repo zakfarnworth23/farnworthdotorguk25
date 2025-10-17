@@ -171,7 +171,7 @@ export async function submitContactForm(formData: ContactFormData): Promise<Cont
       if (totalSizeMB > 3.5) {
         return {
           success: false,
-          error: `Attachments too large (${totalSizeMB.toFixed(1)}MB). Please keep total size under 3.5MB or send fewer files.`,
+          error: `Total attachment size is ${totalSizeMB.toFixed(1)}MB. Please remove some attachments to get under the 3.5MB limit.`,
         }
       }
     }
