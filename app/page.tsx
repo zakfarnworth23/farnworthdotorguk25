@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
+import { ContactForm } from "@/components/contact-form" // Import the ContactForm component
 
 export default function Home() {
   const [isDark, setIsDark] = useState(true)
@@ -40,7 +41,7 @@ export default function Home() {
     <div className="min-h-screen bg-background text-foreground relative">
       <nav className="fixed left-8 top-1/2 -translate-y-1/2 z-10 hidden lg:block">
         <div className="flex flex-col gap-4">
-          {["intro", "work", "thoughts", "connect"].map((section) => (
+          {["intro", "about", "work", "media", "connect"].map((section) => (
             <button
               key={section}
               onClick={() => document.getElementById(section)?.scrollIntoView({ behavior: "smooth" })}
@@ -73,7 +74,21 @@ export default function Home() {
               <div className="space-y-6 max-w-md">
                 <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed">
                   ICT Technician, passionate about leveraging technology for the
-                  <span className="text-foreground"> greater</span>,<span className="text-foreground"> good.</span>
+                  <span className="relative inline-block group/stars text-foreground ml-1 z-10">
+                    greater good.
+                    <span className="absolute -top-1 -left-1 w-2 h-2 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300 -z-10">
+                      <span className="absolute inset-0 animate-twinkle">✦</span>
+                    </span>
+                    <span className="absolute -top-2 right-2 w-2 h-2 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300 delay-100 -z-10">
+                      <span className="absolute inset-0 animate-twinkle-delayed">✦</span>
+                    </span>
+                    <span className="absolute -bottom-1 left-4 w-2 h-2 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300 delay-200 -z-10">
+                      <span className="absolute inset-0 animate-twinkle">✦</span>
+                    </span>
+                    <span className="absolute -bottom-2 right-6 w-2 h-2 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300 delay-150 -z-10">
+                      <span className="absolute inset-0 animate-twinkle-delayed">✦</span>
+                    </span>
+                  </span>
                 </p>
 
                 <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 text-sm text-muted-foreground">
@@ -90,7 +105,7 @@ export default function Home() {
               <div className="space-y-4">
                 <div className="text-sm text-muted-foreground font-mono">CURRENTLY</div>
                 <div className="space-y-2">
-                  <div className="text-foreground">ICT Technicianr</div>
+                  <div className="text-foreground">ICT Technician</div>
                   <div className="text-muted-foreground">@ Albany Learning Trust</div>
                   <div className="text-xs text-muted-foreground">March 2025 — Present</div>
                 </div>
@@ -99,7 +114,7 @@ export default function Home() {
               <div className="space-y-4">
                 <div className="text-sm text-muted-foreground font-mono">FOCUS</div>
                 <div className="flex flex-wrap gap-2">
-                  {["HubL", "React", "TypeScript", "HubSpot CMS", "Node.js"].map((skill) => (
+                  {["Active Directory", "Microsoft 365", "Microsoft Intune", "HaloITSM", "Powershell"].map((skill) => (
                     <span
                       key={skill}
                       className="px-3 py-1 text-xs border border-border rounded-full hover:border-muted-foreground/50 transition-colors duration-300"
@@ -114,45 +129,117 @@ export default function Home() {
         </header>
 
         <section
-          id="work"
+          id="about"
           ref={(el) => (sectionsRef.current[1] = el)}
           className="min-h-screen py-20 sm:py-32 opacity-0"
         >
           <div className="space-y-12 sm:space-y-16">
             <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
-              <h2 className="text-3xl sm:text-4xl font-light">Selected Work</h2>
-              <div className="text-sm text-muted-foreground font-mono">2019 — 2025</div>
+              <h2 className="text-3xl sm:text-4xl font-light">About Me</h2>
+              <div className="text-sm text-muted-foreground font-mono">WHO AM I</div>
+            </div>
+
+            <div className="grid lg:grid-cols-5 gap-12 sm:gap-16">
+              <div className="lg:col-span-2 flex items-start">
+                <div className="relative w-full aspect-[3/4] overflow-hidden rounded-lg border border-border">
+                  <img
+                    src="/officialphoto.jpg"
+                    alt="Zak Farnworth"
+                    className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                  />
+                </div>
+              </div>
+
+              <div className="lg:col-span-3 space-y-6">
+                <div className="space-y-4 text-lg text-muted-foreground leading-relaxed">
+                  <p>
+                    I'm an ICT Technician based in Bolton, United Kingdom, with a passion for leveraging technology to
+                    make a positive impact in education and beyond.
+                  </p>
+                  <p>
+                    My journey in IT began with an apprenticeship at The Quill C of E Trust, where I led cloud
+                    migrations, Intune rollouts, automation systems, and HaloITSM implementation; awarded 'Highly
+                    Commended' BCS award for IT Infrastructure.
+                  </p>
+                  <p>
+                    Currently, I'm working at Albany Learning Trust, where I continue to develop my expertise in Active
+                    Directory, Microsoft 365, and modern IT infrastructure management.
+                  </p>
+                  <p className="text-foreground">
+                    When I'm not working with technology, I'm exploring new ways to automate processes and improve
+                    systems for the{" "}
+                    <span className="relative inline-block group/stars z-10">
+                      greater good.
+                      <span className="absolute -top-1 -left-1 w-2 h-2 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300 -z-10">
+                        <span className="absolute inset-0 animate-twinkle">✦</span>
+                      </span>
+                      <span className="absolute -top-2 right-2 w-2 h-2 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300 delay-100 -z-10">
+                        <span className="absolute inset-0 animate-twinkle-delayed">✦</span>
+                      </span>
+                      <span className="absolute -bottom-1 left-4 w-2 h-2 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300 delay-200 -z-10">
+                        <span className="absolute inset-0 animate-twinkle">✦</span>
+                      </span>
+                      <span className="absolute -bottom-2 right-6 w-2 h-2 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300 delay-150 -z-10">
+                        <span className="absolute inset-0 animate-twinkle-delayed">✦</span>
+                      </span>
+                    </span>
+                  </p>
+                </div>
+
+                <div className="pt-6 border-t border-border">
+                  <div className="text-sm text-muted-foreground font-mono mb-4">EXPERTISE</div>
+                  <div className="grid grid-cols-2 gap-3">
+                    {[
+                      "Active Directory",
+                      "Microsoft 365",
+                      "Microsoft Intune",
+                      "HaloITSM",
+                      "PowerShell",
+                      "Cloud Migration",
+                      "Automation",
+                      "IT Infrastructure",
+                    ].map((skill) => (
+                      <div
+                        key={skill}
+                        className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300"
+                      >
+                        → {skill}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section
+          id="work"
+          ref={(el) => (sectionsRef.current[2] = el)}
+          className="min-h-screen py-20 sm:py-32 opacity-0"
+        >
+          <div className="space-y-12 sm:space-y-16">
+            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+              <h2 className="text-3xl sm:text-4xl font-light">Work Experience</h2>
+              <div className="text-sm text-muted-foreground font-mono">2023 — 2025</div>
             </div>
 
             <div className="space-y-8 sm:space-y-12">
               {[
                 {
                   year: "2023",
-                  role: "Senior Frontend Engineer",
-                  company: "Vercel",
-                  description: "Leading frontend architecture for developer tools and AI-powered features.",
-                  tech: ["React", "TypeScript", "Next.js"],
+                  role: "IT Apprentice",
+                  company: "The Quill C of E Trust",
+                  description:
+                    "Led our cloud migration, Intune rollout, automation systems, and HaloITSM implementation; awarded 'Highly Commended' BCS for IT Infrastructure.",
+                  tech: ["Active Directory", "Microsoft 365", "Microsoft Intune", "HaloITSM"],
                 },
                 {
-                  year: "2022",
-                  role: "Frontend Engineer",
-                  company: "Linear",
-                  description: "Built performant interfaces for project management and team collaboration.",
-                  tech: ["React", "GraphQL", "Framer Motion"],
-                },
-                {
-                  year: "2021",
-                  role: "Full Stack Developer",
-                  company: "Stripe",
-                  description: "Developed payment infrastructure and merchant-facing dashboard features.",
-                  tech: ["Ruby", "React", "PostgreSQL"],
-                },
-                {
-                  year: "2019",
-                  role: "Software Engineer",
-                  company: "Airbnb",
-                  description: "Created booking flow optimizations and host management tools.",
-                  tech: ["React", "Node.js", "MySQL"],
+                  year: "2025",
+                  role: "ICT Technician",
+                  company: "ALbany Learning Trust",
+                  description: "",
+                  tech: ["Active Directory", "Microsoft 365", "Microsoft Deployment Toolkit", "Asset Management"],
                 },
               ].map((job, index) => (
                 <div
@@ -189,22 +276,78 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="connect" ref={(el) => (sectionsRef.current[3] = el)} className="py-20 sm:py-32 opacity-0">
+        <section
+          id="media"
+          ref={(el) => (sectionsRef.current[3] = el)}
+          className="min-h-screen py-20 sm:py-32 opacity-0"
+        >
+          <div className="space-y-12 sm:space-y-16">
+            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+              <h2 className="text-3xl sm:text-4xl font-light">Media Center</h2>
+              <div className="text-sm text-muted-foreground font-mono">PRESS & RESOURCES</div>
+            </div>
+
+            <div className="grid lg:grid-cols-2 gap-12 sm:gap-16">
+              <div className="space-y-6">
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  Professional resources for external trusts, schools, and media inquiries. Access my CV, headshots, and
+                  other materials.
+                </p>
+
+                <Link
+                  href="/media"
+                  className="group inline-flex items-center gap-3 px-6 py-3 border border-border rounded-lg hover:border-muted-foreground/50 transition-all duration-300"
+                >
+                  <span className="text-foreground">Visit Media Center</span>
+                  <svg
+                    className="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </Link>
+              </div>
+
+              <div className="space-y-4">
+                <div className="text-sm text-muted-foreground font-mono mb-4">AVAILABLE RESOURCES</div>
+                <div className="space-y-3">
+                  {[
+                    { name: "Curriculum Vitae", type: "PDF Document" },
+                    { name: "Professional Headshots", type: "High-Resolution Images" },
+                    { name: "Biography", type: "Text & Media" },
+                  ].map((resource) => (
+                    <div
+                      key={resource.name}
+                      className="p-4 border border-border rounded-lg hover:border-muted-foreground/50 transition-colors duration-300"
+                    >
+                      <div className="text-foreground">{resource.name}</div>
+                      <div className="text-sm text-muted-foreground">{resource.type}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="connect" ref={(el) => (sectionsRef.current[4] = el)} className="py-20 sm:py-32 opacity-0">
           <div className="grid lg:grid-cols-2 gap-12 sm:gap-16">
             <div className="space-y-6 sm:space-y-8">
               <h2 className="text-3xl sm:text-4xl font-light">Let's Connect</h2>
 
               <div className="space-y-6">
                 <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed">
-                  Always interested in new opportunities, collaborations, and conversations about technology and design.
+                  Always interested in new opportunities, collaborations, and conversations about technology.
                 </p>
 
                 <div className="space-y-4">
                   <Link
-                    href="mailto:test@example.com"
+                    href="mailto:zak@farnworth.org.uk"
                     className="group flex items-center gap-3 text-foreground hover:text-muted-foreground transition-colors duration-300"
                   >
-                    <span className="text-base sm:text-lg">test@example.com</span>
+                    <span className="text-base sm:text-lg">zak@farnworth.org.uk</span>
                     <svg
                       className="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300"
                       fill="none"
@@ -216,6 +359,11 @@ export default function Home() {
                   </Link>
                 </div>
               </div>
+
+              <div className="pt-8 border-t border-border">
+                <div className="text-sm text-muted-foreground font-mono mb-6">SEND A MESSAGE</div>
+                <ContactForm />
+              </div>
             </div>
 
             <div className="space-y-6 sm:space-y-8">
@@ -223,10 +371,13 @@ export default function Home() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {[
-                  { name: "GitHub", handle: "@felixmacaspac", url: "#" },
-                  { name: "v0.dev", handle: "@felixmacaspac", url: "#" },
-                  { name: "HubSpot Community", handle: "@felixmacaspac", url: "#" },
-                  { name: "LinkedIn", handle: "felixmacaspac", url: "#" },
+                  { name: "LinkedIn", handle: "zakfarnworth", url: "https://www.linkedin.com/in/zakfarnworth" },
+                  { name: "GitHub", handle: "@zakfarnworth23", url: "https://github.com/zakfarnworth23" },
+                  {
+                    name: "Instagram",
+                    handle: "@zakfarnworthofficial",
+                    url: "https://www.instagram.com/zakfarnworthofficial?igsh=MWQ0MnZqcGtxcjhnYw%3D%3D&utm_source=qr",
+                  },
                 ].map((social) => (
                   <Link
                     key={social.name}
@@ -248,9 +399,16 @@ export default function Home() {
 
         <footer className="py-12 sm:py-16 border-t border-border">
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 sm:gap-8">
-            <div className="space-y-2">
+            <div className="space-y-3">
               <div className="text-sm text-muted-foreground">© 2025 Zak Farnworth. All rights reserved.</div>
-              <div className="text-xs text-muted-foreground">Office of Zak Farnworth</div>
+              <div className="flex flex-col gap-2">
+                <div className="text-xs text-muted-foreground">Office of Zak Farnworth</div>
+                <img
+                  src="/OOZF_Logo.png"
+                  alt="Office of Zak Farnworth Logo"
+                  className="h-8 w-auto opacity-70 hover:opacity-100 transition-opacity duration-300"
+                />
+              </div>
             </div>
 
             <div className="flex items-center gap-4">
@@ -274,7 +432,8 @@ export default function Home() {
                 ) : (
                   <svg
                     className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors duration-300"
-                    fill="currentColor"
+                    fill="none"
+                    stroke="currentColor"
                     viewBox="0 0 20 20"
                   >
                     <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
