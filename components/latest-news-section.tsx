@@ -1,26 +1,72 @@
-import { createClient } from "@/lib/supabase/server"
+"use client"
+
+import { useEffect, useState } from "react"
+import { createClient } from "@/lib/supabase/client"
 import Link from "next/link"
 import { format } from "date-fns"
 import { Badge } from "@/components/ui/badge"
 
-export async function LatestNewsSection() {
-  const supabase = await createClient()
+type BlogPost = {
+  id: string
+  title: string
+  slug: string
+  excerpt: string | null
+  published_at: string
+}
 
-  const { data: blogPosts } = await supabase
-    .from("blog_posts")
-    .select("*")
-    .eq("published", true)
-    .order("published_at", { ascending: false })
-    .limit(3)
+type PressStatement = {
+  id: string
+  title: string
+  slug: string
+  excerpt: string | null
+  published_at: string
+}
 
-  const { data: pressStatements } = await supabase
-    .from("press_statements")
-    .select("*")
-    .eq("published", true)
-    .order("published_at", { ascending: false })
-    .limit(2)
+export function LatestNewsSection() {
+  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([])
+  const [pressStatements, setPressStatements] = useState<PressStatement[]>([])
+  const [loading, setLoading] = useState(true)
 
-  const hasContent = (blogPosts && blogPosts.length > 0) || (pressStatements && pressStatements.length > 0)
+  useEffect(() => {
+    async function fetchNews() {
+      const supabase = createClient()
+
+      const [blogResult, pressResult] = await Promise.all([
+        supabase
+          .from("blog_posts")
+          .select("*")
+          .eq("published", true)
+          .order("published_at", { ascending: false })
+          .limit(3),
+        supabase
+          .from("press_statements")
+          .select("*")
+          .eq("published", true)
+          .order("published_at", { ascending: false })
+          .limit(2),
+      ])
+
+      if (blogResult.data) setBlogPosts(blogResult.data)
+      if (pressResult.data) setPressStatements(pressResult.data)
+      setLoading(false)
+    }
+
+    fetchNews()
+  }, [])
+
+  const hasContent = blogPosts.length > 0 || pressStatements.length > 0
+
+  if (loading) {
+    return (
+      <div className="space-y-12 sm:space-y-16">
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+          <h2 className="text-3xl sm:text-4xl font-light">Latest News</h2>
+          <div className="text-sm text-muted-foreground font-mono">UPDATES & PRESS</div>
+        </div>
+        <div className="text-center text-muted-foreground py-8">Loading...</div>
+      </div>
+    )
+  }
 
   if (!hasContent) {
     return null
@@ -34,7 +80,7 @@ export async function LatestNewsSection() {
       </div>
 
       <div className="grid lg:grid-cols-2 gap-8 sm:gap-12">
-        {blogPosts && blogPosts.length > 0 && (
+        {blogPosts.length > 0 && (
           <div className="space-y-6">
             <div className="flex items-center justify-between">
               <h3 className="text-xl font-medium">Blog Posts</h3>
@@ -70,7 +116,7 @@ export async function LatestNewsSection() {
           </div>
         )}
 
-        {pressStatements && pressStatements.length > 0 && (
+        {pressStatements.length > 0 && (
           <div className="space-y-6">
             <div className="flex items-center justify-between">
               <h3 className="text-xl font-medium">Press Statements</h3>
