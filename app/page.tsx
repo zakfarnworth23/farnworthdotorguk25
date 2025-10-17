@@ -1,9 +1,8 @@
 "use client"
 
 import Link from "next/link"
-import { useEffect, useRef, useState, Suspense } from "react"
-import { ContactForm } from "@/components/contact-form"
-import { LatestNewsSection } from "@/components/latest-news-section"
+import { useEffect, useRef, useState } from "react"
+import { ContactForm } from "@/components/contact-form" // Import the ContactForm component
 
 export default function Home() {
   const [isDark, setIsDark] = useState(true)
@@ -42,7 +41,7 @@ export default function Home() {
     <div className="min-h-screen bg-background text-foreground relative">
       <nav className="fixed left-8 top-1/2 -translate-y-1/2 z-10 hidden lg:block">
         <div className="flex flex-col gap-4">
-          {["intro", "about", "work", "news", "media", "connect"].map((section) => (
+          {["intro", "about", "work", "events", "media", "connect"].map((section) => (
             <button
               key={section}
               onClick={() => document.getElementById(section)?.scrollIntoView({ behavior: "smooth" })}
@@ -278,23 +277,117 @@ export default function Home() {
         </section>
 
         <section
-          id="news"
+          id="events"
           ref={(el) => (sectionsRef.current[3] = el)}
           className="min-h-screen py-20 sm:py-32 opacity-0"
         >
-          <Suspense
-            fallback={
-              <div className="space-y-12 sm:space-y-16">
-                <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
-                  <h2 className="text-3xl sm:text-4xl font-light">Latest News</h2>
-                  <div className="text-sm text-muted-foreground font-mono">UPDATES & PRESS</div>
+          <div className="space-y-12 sm:space-y-16">
+            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+              <h2 className="text-3xl sm:text-4xl font-light">Events & Awards</h2>
+              <div className="text-sm text-muted-foreground font-mono">SPEAKING & RECOGNITION</div>
+            </div>
+
+            <div className="grid lg:grid-cols-2 gap-12 sm:gap-16">
+              <div className="space-y-8">
+                <div>
+                  <div className="text-sm text-muted-foreground font-mono mb-6">PRESENTATIONS</div>
+                  <div className="space-y-6">
+                    {[
+                      {
+                        event: "ANME Conference",
+                        organization: "Association of Network Managers in Education",
+                        count: "2 presentations",
+                        description: "Shared insights on IT infrastructure and network management in education",
+                      },
+                      {
+                        event: "Cybrewery Evenings",
+                        organization: "Burnley",
+                        count: "1 presentation",
+                        description: "Discussed cybersecurity and IT best practices with local tech community",
+                      },
+                    ].map((presentation, index) => (
+                      <div
+                        key={index}
+                        className="group p-6 border border-border rounded-lg hover:border-muted-foreground/50 transition-all duration-300"
+                      >
+                        <div className="space-y-3">
+                          <div className="flex items-start justify-between gap-4">
+                            <h3 className="text-lg font-medium text-foreground group-hover:text-muted-foreground transition-colors duration-300">
+                              {presentation.event}
+                            </h3>
+                            <span className="text-xs text-muted-foreground px-2 py-1 border border-border rounded-full whitespace-nowrap">
+                              {presentation.count}
+                            </span>
+                          </div>
+                          <div className="text-sm text-muted-foreground">{presentation.organization}</div>
+                          <p className="text-sm text-muted-foreground leading-relaxed">{presentation.description}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-                <div className="text-muted-foreground">Loading...</div>
               </div>
-            }
-          >
-            <LatestNewsSection />
-          </Suspense>
+
+              <div className="space-y-8">
+                <div>
+                  <div className="text-sm text-muted-foreground font-mono mb-6">AWARDS</div>
+                  <div className="space-y-6">
+                    <div className="group p-6 border border-border rounded-lg hover:border-muted-foreground/50 transition-all duration-300 bg-muted/20">
+                      <div className="space-y-4">
+                        <div className="flex items-start gap-3">
+                          <svg
+                            className="w-6 h-6 text-yellow-500 flex-shrink-0 mt-1"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                          >
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                          </svg>
+                          <div className="flex-1">
+                            <h3 className="text-lg font-medium text-foreground">Highly Commended Award</h3>
+                            <div className="text-sm text-muted-foreground mt-1">
+                              IT Infrastructure, Networks & Support
+                            </div>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                          <span className="px-2 py-1 bg-background border border-border rounded">2024</span>
+                          <span>BCS, The Chartered Institute for IT</span>
+                        </div>
+                        <p className="text-sm text-muted-foreground leading-relaxed">
+                          Recognized for outstanding contributions to IT infrastructure management, including cloud
+                          migrations, Intune rollouts, and automation systems implementation.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="p-6 border border-border rounded-lg">
+                  <div className="space-y-3">
+                    <div className="text-sm text-muted-foreground font-mono">SPEAKING OPPORTUNITIES</div>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      Interested in having me speak at your event or conference? I'm passionate about sharing knowledge
+                      on IT infrastructure, automation, and education technology.
+                    </p>
+                    <Link
+                      href="mailto:zak@farnworth.org.uk"
+                      className="inline-flex items-center gap-2 text-sm text-foreground hover:text-muted-foreground transition-colors duration-300"
+                    >
+                      <span>Get in touch</span>
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M17 8l4 4m0 0l-4 4m4-4H3"
+                        />
+                      </svg>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
 
         <section
@@ -309,8 +402,8 @@ export default function Home() {
             </div>
 
             <div className="grid lg:grid-cols-2 gap-12 sm:gap-16">
-              <div className="space-y-6">
-                <p className="text-lg text-muted-foreground leading-relaxed">
+              <div className="space-y-6 sm:space-y-8">
+                <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed">
                   Professional resources for external trusts, schools, and media inquiries. Access my CV, headshots, and
                   other materials.
                 </p>
@@ -446,7 +539,7 @@ export default function Home() {
                   >
                     <path
                       fillRule="evenodd"
-                      d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707a1 1 0 001.414 0zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                      d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
                       clipRule="evenodd"
                     />
                   </svg>
