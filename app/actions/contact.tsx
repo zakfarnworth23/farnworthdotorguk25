@@ -148,7 +148,7 @@ export async function submitContactForm(formData: ContactFormData): Promise<Cont
       <html>
         <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
           <div style="text-align: center; margin-bottom: 30px;">
-            <img src="/images/design-mode/office-logo(2).jpg" alt="Office of Zak Farnworth" style="max-width: 200px; height: auto;" />
+            <img src="https://assets.farnworth.org.uk/OOZF_Logo.png" alt="Office of Zak Farnworth" style="max-width: 200px; height: auto;" />
           </div>
           <h2 style="color: #2c3e50;">Thank you for contacting Zak Farnworth's correspondence line</h2>
           <p>Dear ${formData.name},</p>
