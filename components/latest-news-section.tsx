@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { createClient } from "@/lib/supabase/client"
+import { createBrowserClient } from "@supabase/ssr"
 import Link from "next/link"
 import { format } from "date-fns"
 import { Badge } from "@/components/ui/badge"
@@ -26,29 +26,53 @@ export function LatestNewsSection() {
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([])
   const [pressStatements, setPressStatements] = useState<PressStatement[]>([])
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     async function fetchNews() {
-      const supabase = createClient()
+      try {
+        const supabaseUrl = process.env.SUPABASE_SUPABASE_NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL
+        const supabaseAnonKey =
+          process.env.SUPABASE_NEXT_PUBLIC_SUPABASE_ANON_KEY_ANON_KEY || process.env.SUPABASE_ANON_KEY
 
-      const [blogResult, pressResult] = await Promise.all([
-        supabase
-          .from("blog_posts")
-          .select("*")
-          .eq("published", true)
-          .order("published_at", { ascending: false })
-          .limit(3),
-        supabase
-          .from("press_statements")
-          .select("*")
-          .eq("published", true)
-          .order("published_at", { ascending: false })
-          .limit(2),
-      ])
+        if (!supabaseUrl || !supabaseAnonKey) {
+          console.log("[v0] Supabase credentials not found, skipping news fetch")
+          setLoading(false)
+          return
+        }
 
-      if (blogResult.data) setBlogPosts(blogResult.data)
-      if (pressResult.data) setPressStatements(pressResult.data)
-      setLoading(false)
+        const supabase = createBrowserClient(supabaseUrl, supabaseAnonKey)
+
+        const [blogResult, pressResult] = await Promise.all([
+          supabase
+            .from("blog_posts")
+            .select("*")
+            .eq("published", true)
+            .order("published_at", { ascending: false })
+            .limit(3),
+          supabase
+            .from("press_statements")
+            .select("*")
+            .eq("published", true)
+            .order("published_at", { ascending: false })
+            .limit(2),
+        ])
+
+        if (blogResult.error) {
+          console.error("[v0] Error fetching blog posts:", blogResult.error)
+        }
+        if (pressResult.error) {
+          console.error("[v0] Error fetching press statements:", pressResult.error)
+        }
+
+        if (blogResult.data) setBlogPosts(blogResult.data)
+        if (pressResult.data) setPressStatements(pressResult.data)
+      } catch (err) {
+        console.error("[v0] Error in fetchNews:", err)
+        setError("Failed to load news")
+      } finally {
+        setLoading(false)
+      }
     }
 
     fetchNews()
@@ -68,7 +92,7 @@ export function LatestNewsSection() {
     )
   }
 
-  if (!hasContent) {
+  if (error || !hasContent) {
     return null
   }
 
