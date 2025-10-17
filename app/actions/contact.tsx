@@ -1,10 +1,17 @@
 "use server"
 
+interface Attachment {
+  name: string
+  contentType: string
+  contentBytes: string
+}
+
 interface ContactFormData {
   name: string
   email: string
   organization: string
   message: string
+  attachments?: Attachment[]
 }
 
 interface ContactFormResult {
@@ -69,7 +76,13 @@ async function getAccessToken(): Promise<string> {
   return data.access_token
 }
 
-async function sendEmail(accessToken: string, to: string, subject: string, body: string): Promise<void> {
+async function sendEmail(
+  accessToken: string,
+  to: string,
+  subject: string,
+  body: string,
+  attachments?: Attachment[],
+): Promise<void> {
   const senderEmail = process.env.MICROSOFT_SENDER_EMAIL
 
   if (!senderEmail) {
@@ -92,6 +105,15 @@ async function sendEmail(accessToken: string, to: string, subject: string, body:
           },
         },
       ],
+      ...(attachments &&
+        attachments.length > 0 && {
+          attachments: attachments.map((att) => ({
+            "@odata.type": "#microsoft.graph.fileAttachment",
+            name: att.name,
+            contentType: att.contentType,
+            contentBytes: att.contentBytes,
+          })),
+        }),
     },
   }
 
@@ -121,6 +143,11 @@ export async function submitContactForm(formData: ContactFormData): Promise<Cont
     // Get Microsoft Graph access token
     const accessToken = await getAccessToken()
 
+    const attachmentInfo =
+      formData.attachments && formData.attachments.length > 0
+        ? `<p><strong>Attachments:</strong> ${formData.attachments.length} file(s)</p>`
+        : ""
+
     const notificationBody = `
       <html>
         <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
@@ -132,6 +159,7 @@ export async function submitContactForm(formData: ContactFormData): Promise<Cont
             <p><strong>Name:</strong> ${formData.name}</p>
             <p><strong>Email:</strong> ${formData.email}</p>
             <p><strong>Organization:</strong> ${formData.organization || "Not provided"}</p>
+            ${attachmentInfo}
             <p><strong>Message:</strong></p>
             <p style="white-space: pre-wrap;">${formData.message}</p>
           </div>
@@ -147,7 +175,13 @@ export async function submitContactForm(formData: ContactFormData): Promise<Cont
       </html>
     `
 
-    await sendEmail(accessToken, "zak@farnworth.org.uk", `New Contact Form: ${formData.name}`, notificationBody)
+    await sendEmail(
+      accessToken,
+      "zak@farnworth.org.uk",
+      `New Contact Form: ${formData.name}`,
+      notificationBody,
+      formData.attachments,
+    )
 
     const thankYouBody = `
       <html>
