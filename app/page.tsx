@@ -281,63 +281,73 @@ export default function Home() {
           ref={(el) => (sectionsRef.current[3] = el)}
           className="min-h-screen py-20 sm:py-32 opacity-0"
         >
-          <div className="space-y-12 sm:space-y-16">
+          <div className="space-y-16 sm:space-y-20">
             <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
               <h2 className="text-3xl sm:text-4xl font-light">Events & Awards</h2>
               <div className="text-sm text-muted-foreground font-mono">SPEAKING & RECOGNITION</div>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[
-                {
-                  title: "ANME Conference 2024",
-                  slug: "anme-2024",
-                  category: "Speaking",
-                  image: "/professional-conference-presentation-technology-ed.jpg",
-                },
-                {
-                  title: "ANME Conference 2023",
-                  slug: "anme-2023",
-                  category: "Speaking",
-                  image: "/network-managers-education-conference-presentation.jpg",
-                },
-                {
-                  title: "Cybrewery Evenings",
-                  slug: "cybrewery-evenings",
-                  category: "Speaking",
-                  image: "/cybersecurity-evening-event-burnley-tech-community.jpg",
-                },
-                {
-                  title: "BCS Highly Commended Award",
-                  slug: "bcs-award-2024",
-                  category: "Award",
-                  image: "/award-trophy-it-infrastructure-recognition-profess.jpg",
-                },
-              ].map((item) => (
-                <Link
-                  key={item.slug}
-                  href={`/events/${item.slug}`}
-                  className="group relative overflow-hidden rounded-lg border border-border hover:border-muted-foreground/50 transition-all duration-500 aspect-[4/3]"
+            <div className="space-y-8">
+              <div className="flex items-center justify-between">
+                <h3 className="text-2xl font-light text-foreground">Speaking Events</h3>
+                <button
+                  onClick={() => document.getElementById("connect")?.scrollIntoView({ behavior: "smooth" })}
+                  className="group inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors duration-300"
                 >
-                  <div className="absolute inset-0">
-                    <img
-                      src={item.image || "/placeholder.svg"}
-                      alt={item.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent opacity-90 group-hover:opacity-95 transition-opacity duration-500" />
-                  </div>
+                  <span>Interested in having me speak?</span>
+                  <svg
+                    className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </button>
+              </div>
 
-                  <div className="absolute inset-0 p-6 flex flex-col justify-end">
-                    <div className="space-y-2 transform transition-transform duration-500 group-hover:-translate-y-2">
-                      <div className="text-xs text-muted-foreground font-mono tracking-wider uppercase">
-                        {item.category}
-                      </div>
-                      <h3 className="text-xl font-medium text-foreground group-hover:text-primary transition-colors duration-300">
-                        {item.title}
-                      </h3>
-                      <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <div className="grid md:grid-cols-2 gap-8">
+                {[
+                  {
+                    title: "ANME Conference 2024",
+                    slug: "anme-2024",
+                    description: "Presenting on modern IT infrastructure in education",
+                    image: "/professional-conference-presentation-technology-ed.jpg",
+                  },
+                  {
+                    title: "ANME Conference 2023",
+                    slug: "anme-2023",
+                    description: "Network management strategies for educational institutions",
+                    image: "/network-managers-education-conference-presentation.jpg",
+                  },
+                  {
+                    title: "Cybrewery Evenings",
+                    slug: "cybrewery-evenings",
+                    description: "Cybersecurity insights for the Burnley tech community",
+                    image: "/cybersecurity-evening-event-burnley-tech-community.jpg",
+                  },
+                ].map((item) => (
+                  <Link
+                    key={item.slug}
+                    href={`/events/${item.slug}`}
+                    className="group relative overflow-hidden rounded-xl border border-border hover:border-foreground/20 transition-all duration-500 aspect-[16/10] hover:shadow-2xl"
+                  >
+                    <div className="absolute inset-0">
+                      <img
+                        src={item.image || "/placeholder.svg"}
+                        alt={item.title}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/20 group-hover:from-black/95 group-hover:via-black/60 transition-all duration-500" />
+                    </div>
+
+                    <div className="absolute inset-0 p-8 flex flex-col justify-end">
+                      <div className="space-y-3 transform transition-all duration-500 group-hover:-translate-y-2">
+                        <h3 className="text-2xl font-medium text-white drop-shadow-lg">{item.title}</h3>
+                        <p className="text-white/90 text-sm leading-relaxed opacity-0 group-hover:opacity-100 transition-all duration-500 delay-75 max-h-0 group-hover:max-h-20">
+                          {item.description}
+                        </p>
+                        <div className="flex items-center gap-2 text-sm text-white/80 opacity-0 group-hover:opacity-100 transition-all duration-500 delay-100">
                           <span>Read more</span>
                           <svg
                             className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300"
@@ -355,9 +365,53 @@ export default function Home() {
                         </div>
                       </div>
                     </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            <div className="space-y-8 pt-8 border-t border-border">
+              <h3 className="text-2xl font-light text-foreground">Awards & Recognition</h3>
+
+              <Link
+                href="/events/bcs-award-2024"
+                className="group relative overflow-hidden rounded-xl border border-border hover:border-foreground/20 transition-all duration-500 aspect-[21/9] hover:shadow-2xl block"
+              >
+                <div className="absolute inset-0">
+                  <img
+                    src="/award-trophy-it-infrastructure-recognition-profess.jpg"
+                    alt="BCS Highly Commended Award"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/20 group-hover:from-black/95 group-hover:via-black/60 transition-all duration-500" />
+                </div>
+
+                <div className="absolute inset-0 p-8 flex flex-col justify-end">
+                  <div className="space-y-3 transform transition-all duration-500 group-hover:-translate-y-2">
+                    <div className="text-xs text-white/70 font-mono tracking-wider uppercase">2024 Award</div>
+                    <h3 className="text-3xl font-medium text-white drop-shadow-lg">BCS Highly Commended Award</h3>
+                    <p className="text-white/90 leading-relaxed opacity-0 group-hover:opacity-100 transition-all duration-500 delay-75 max-h-0 group-hover:max-h-20">
+                      Recognized for excellence in IT Infrastructure, Networks & Support
+                    </p>
+                    <div className="flex items-center gap-2 text-sm text-white/80 opacity-0 group-hover:opacity-100 transition-all duration-500 delay-100">
+                      <span>Read more</span>
+                      <svg
+                        className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M17 8l4 4m0 0l-4 4m4-4H3"
+                        />
+                      </svg>
+                    </div>
                   </div>
-                </Link>
-              ))}
+                </div>
+              </Link>
             </div>
           </div>
         </section>
@@ -538,7 +592,7 @@ export default function Home() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8s9 3.582 9 8z"
                   />
                 </svg>
               </button>
