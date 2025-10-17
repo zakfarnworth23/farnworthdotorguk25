@@ -89,6 +89,16 @@ async function sendEmail(
     throw new Error("MICROSOFT_SENDER_EMAIL not configured")
   }
 
+  if (attachments && attachments.length > 0) {
+    console.log("[v0] Sending email with attachments:", attachments.length)
+    const totalSize = attachments.reduce((sum, att) => {
+      const size = (att.contentBytes.length * 3) / 4 // Approximate base64 decoded size
+      console.log(`[v0] Attachment: ${att.name}, size: ${(size / 1024 / 1024).toFixed(2)}MB`)
+      return sum + size
+    }, 0)
+    console.log(`[v0] Total attachment size: ${(totalSize / 1024 / 1024).toFixed(2)}MB`)
+  }
+
   const graphEndpoint = `https://graph.microsoft.com/v1.0/users/${senderEmail}/sendMail`
 
   const emailPayload = {
@@ -117,6 +127,9 @@ async function sendEmail(
     },
   }
 
+  const payloadSize = JSON.stringify(emailPayload).length
+  console.log(`[v0] Email payload size: ${(payloadSize / 1024 / 1024).toFixed(2)}MB`)
+
   const response = await fetch(graphEndpoint, {
     method: "POST",
     headers: {
@@ -129,7 +142,13 @@ async function sendEmail(
   if (!response.ok) {
     const errorText = await response.text()
     console.error("[v0] Failed to send email:", errorText)
-    throw new Error("Failed to send email")
+    try {
+      const errorJson = JSON.parse(errorText)
+      console.error("[v0] Error details:", JSON.stringify(errorJson, null, 2))
+    } catch (e) {
+      // Error text is not JSON
+    }
+    throw new Error(`Failed to send email: ${errorText}`)
   }
 }
 
@@ -138,6 +157,23 @@ export async function submitContactForm(formData: ContactFormData): Promise<Cont
     // Validate form data
     if (!formData.name || !formData.email || !formData.message) {
       return { success: false, error: "Please fill in all required fields" }
+    }
+
+    if (formData.attachments && formData.attachments.length > 0) {
+      const totalSize = formData.attachments.reduce((sum, att) => {
+        return sum + (att.contentBytes.length * 3) / 4 // Approximate decoded size
+      }, 0)
+
+      const totalSizeMB = totalSize / 1024 / 1024
+      console.log(`[v0] Total attachment size: ${totalSizeMB.toFixed(2)}MB`)
+
+      // Microsoft Graph has a 4MB limit for sendMail endpoint
+      if (totalSizeMB > 3.5) {
+        return {
+          success: false,
+          error: `Attachments too large (${totalSizeMB.toFixed(1)}MB). Please keep total size under 3.5MB or send fewer files.`,
+        }
+      }
     }
 
     // Get Microsoft Graph access token
@@ -212,6 +248,8 @@ export async function submitContactForm(formData: ContactFormData): Promise<Cont
     return { success: true }
   } catch (error) {
     console.error("[v0] Contact form submission error:", error)
+    const errorMessage = error instanceof Error ? error.message : "Unknown error"
+    console.error("[v0] Error details:", errorMessage)
     return {
       success: false,
       error: "Failed to send message. Please try emailing directly at zak@farnworth.org.uk",
