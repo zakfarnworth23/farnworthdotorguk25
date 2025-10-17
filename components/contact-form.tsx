@@ -171,7 +171,7 @@ const removeFile = (index: number) => {
           multiple
           className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:border-muted-foreground/50 transition-colors duration-300 text-foreground file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-muted-foreground/10 file:text-foreground hover:file:bg-muted-foreground/20 file:cursor-pointer"
         />
-        <p className="text-xs text-muted-foreground">Max 5 files, 10MB total</p>
+        <p className="text-xs text-muted-foreground">Max 5 files, 3.5MB total</p>
 
         {files.length > 0 && (
           <div className="space-y-2 mt-2">
