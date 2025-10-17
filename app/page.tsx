@@ -287,105 +287,77 @@ export default function Home() {
               <div className="text-sm text-muted-foreground font-mono">SPEAKING & RECOGNITION</div>
             </div>
 
-            <div className="grid lg:grid-cols-2 gap-12 sm:gap-16">
-              <div className="space-y-8">
-                <div>
-                  <div className="text-sm text-muted-foreground font-mono mb-6">PRESENTATIONS</div>
-                  <div className="space-y-6">
-                    {[
-                      {
-                        event: "ANME Conference",
-                        organization: "Association of Network Managers in Education",
-                        count: "2 presentations",
-                        description: "Shared insights on IT infrastructure and network management in education",
-                      },
-                      {
-                        event: "Cybrewery Evenings",
-                        organization: "Burnley",
-                        count: "1 presentation",
-                        description: "Discussed cybersecurity and IT best practices with local tech community",
-                      },
-                    ].map((presentation, index) => (
-                      <div
-                        key={index}
-                        className="group p-6 border border-border rounded-lg hover:border-muted-foreground/50 transition-all duration-300"
-                      >
-                        <div className="space-y-3">
-                          <div className="flex items-start justify-between gap-4">
-                            <h3 className="text-lg font-medium text-foreground group-hover:text-muted-foreground transition-colors duration-300">
-                              {presentation.event}
-                            </h3>
-                            <span className="text-xs text-muted-foreground px-2 py-1 border border-border rounded-full whitespace-nowrap">
-                              {presentation.count}
-                            </span>
-                          </div>
-                          <div className="text-sm text-muted-foreground">{presentation.organization}</div>
-                          <p className="text-sm text-muted-foreground leading-relaxed">{presentation.description}</p>
-                        </div>
-                      </div>
-                    ))}
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[
+                {
+                  title: "ANME Conference 2024",
+                  slug: "anme-2024",
+                  category: "Speaking",
+                  image: "/professional-conference-presentation-technology-ed.jpg",
+                },
+                {
+                  title: "ANME Conference 2023",
+                  slug: "anme-2023",
+                  category: "Speaking",
+                  image: "/network-managers-education-conference-presentation.jpg",
+                },
+                {
+                  title: "Cybrewery Evenings",
+                  slug: "cybrewery-evenings",
+                  category: "Speaking",
+                  image: "/cybersecurity-evening-event-burnley-tech-community.jpg",
+                },
+                {
+                  title: "BCS Highly Commended Award",
+                  slug: "bcs-award-2024",
+                  category: "Award",
+                  image: "/award-trophy-it-infrastructure-recognition-profess.jpg",
+                },
+              ].map((item) => (
+                <Link
+                  key={item.slug}
+                  href={`/events/${item.slug}`}
+                  className="group relative overflow-hidden rounded-lg border border-border hover:border-muted-foreground/50 transition-all duration-500 aspect-[4/3]"
+                >
+                  <div className="absolute inset-0">
+                    <img
+                      src={item.image || "/placeholder.svg"}
+                      alt={item.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent opacity-90 group-hover:opacity-95 transition-opacity duration-500" />
                   </div>
-                </div>
-              </div>
 
-              <div className="space-y-8">
-                <div>
-                  <div className="text-sm text-muted-foreground font-mono mb-6">AWARDS</div>
-                  <div className="space-y-6">
-                    <div className="group p-6 border border-border rounded-lg hover:border-muted-foreground/50 transition-all duration-300 bg-muted/20">
-                      <div className="space-y-4">
-                        <div className="flex items-start gap-3">
-                          <svg
-                            className="w-6 h-6 text-yellow-500 flex-shrink-0 mt-1"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
-                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                          </svg>
-                          <div className="flex-1">
-                            <h3 className="text-lg font-medium text-foreground">Highly Commended Award</h3>
-                            <div className="text-sm text-muted-foreground mt-1">
-                              IT Infrastructure, Networks & Support
-                            </div>
-                          </div>
-                        </div>
+                  <div className="absolute inset-0 p-6 flex flex-col justify-end">
+                    <div className="space-y-2 transform transition-transform duration-500 group-hover:-translate-y-2">
+                      <div className="text-xs text-muted-foreground font-mono tracking-wider uppercase">
+                        {item.category}
+                      </div>
+                      <h3 className="text-xl font-medium text-foreground group-hover:text-primary transition-colors duration-300">
+                        {item.title}
+                      </h3>
+                      <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
                         <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                          <span className="px-2 py-1 bg-background border border-border rounded">2024</span>
-                          <span>BCS, The Chartered Institute for IT</span>
+                          <span>Read more</span>
+                          <svg
+                            className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M17 8l4 4m0 0l-4 4m4-4H3"
+                            />
+                          </svg>
                         </div>
-                        <p className="text-sm text-muted-foreground leading-relaxed">
-                          Recognized for outstanding contributions to IT infrastructure management, including cloud
-                          migrations, Intune rollouts, and automation systems implementation.
-                        </p>
                       </div>
                     </div>
                   </div>
-                </div>
-
-                <div className="p-6 border border-border rounded-lg">
-                  <div className="space-y-3">
-                    <div className="text-sm text-muted-foreground font-mono">SPEAKING OPPORTUNITIES</div>
-                    <p className="text-sm text-muted-foreground leading-relaxed">
-                      Interested in having me speak at your event or conference? I'm passionate about sharing knowledge
-                      on IT infrastructure, automation, and education technology.
-                    </p>
-                    <Link
-                      href="mailto:zak@farnworth.org.uk"
-                      className="inline-flex items-center gap-2 text-sm text-foreground hover:text-muted-foreground transition-colors duration-300"
-                    >
-                      <span>Get in touch</span>
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M17 8l4 4m0 0l-4 4m4-4H3"
-                        />
-                      </svg>
-                    </Link>
-                  </div>
-                </div>
-              </div>
+                </Link>
+              ))}
             </div>
           </div>
         </section>
