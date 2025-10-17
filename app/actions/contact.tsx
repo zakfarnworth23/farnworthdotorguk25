@@ -124,8 +124,8 @@ export async function submitContactForm(formData: ContactFormData): Promise<Cont
     const notificationBody = `
       <html>
         <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
-          <div style="text-align: center; margin-bottom: 30px;">
-            <img src="https://assets.farnworth.org.uk/OOZF_Logo.png" alt="Office of Zak Farnworth" style="max-width: 200px; height: auto;" />
+          <div style="text-align: Left; margin-top: 20px; margin-bottom: 30px;">
+            <img src="https://assets.farnworth.org.uk/OOZF_Logo.png" alt="Office of Zak Farnworth" style="max-width: 400px; height: auto;" />
           </div>
           <h2 style="color: #2c3e50;">New Contact Form Submission</h2>
           <div style="background-color: #f8f9fa; padding: 20px; border-radius: 5px; margin: 20px 0;">
@@ -137,6 +137,11 @@ export async function submitContactForm(formData: ContactFormData): Promise<Cont
           </div>
           <p style="color: #7f8c8d; font-size: 12px;">
             This message was sent via your portfolio contact form at ${new Date().toLocaleString()}
+            <hr style="border: none; border-top: 1px solid #e0e0e0; margin: 30px 0;" />
+          <p style="color: #7f8c8d; font-size: 12px;">
+            Office of Zak Farnworth<br/>
+            Bolton, United Kingdom<br/>
+            <a href="https://farnworth.org.uk" style="color: #3498db;">farnworth.org.uk</a>
           </p>
         </body>
       </html>
@@ -147,8 +152,8 @@ export async function submitContactForm(formData: ContactFormData): Promise<Cont
     const thankYouBody = `
       <html>
         <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
-          <div style="text-align: center; margin-bottom: 30px;">
-            <img src="https://assets.farnworth.org.uk/OOZF_Logo.png" alt="Office of Zak Farnworth" style="max-width: 200px; height: auto;" />
+          <div style="text-align: Left; margin-top: 20px; margin-bottom: 30px;">
+            <img src="https://assets.farnworth.org.uk/OOZF_Logo.png" alt="Office of Zak Farnworth" style="max-width: 400px; height: auto;" />
           </div>
           <h2 style="color: #2c3e50;">Thank you for contacting Zak Farnworth's correspondence line</h2>
           <p>Dear ${formData.name},</p>
