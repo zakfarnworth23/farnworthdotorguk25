@@ -70,29 +70,30 @@ export function ContactForm() {
   }
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      const newFiles = Array.from(e.target.files)
-      // Limit to 5 files and 3.5MB total
-         const totalSize = [...files, ...newFiles].reduce((sum, file) => sum + file.size, 0)
+  if (e.target.files) {
+    const newFiles = Array.from(e.target.files)
 
-        if ([...files, ...newFiles].length > 5) {
-  setErrorMessage("Maximum 5 files allowed")
-  return
+    // Limit to 5 files and 3.5MB total
+    const totalSize = [...files, ...newFiles].reduce((sum, file) => sum + file.size, 0)
+
+    if ([...files, ...newFiles].length > 5) {
+      setErrorMessage("Maximum 5 files allowed")
+      return
     }
 
-   if (totalSize > 3.5 * 1024 * 1024) {  // 3.5MB limit
-  setErrorMessage("Total file size must be under 3.5MB")
-  return
-   }
-
-      setFiles((prev) => [...prev, ...newFiles])
-      setErrorMessage("")
+    if (totalSize > 3.5 * 1024 * 1024) {  // 3.5MB limit
+      setErrorMessage("Total file size must be under 3.5MB")
+      return
     }
-  }
 
-  const removeFile = (index: number) => {
-    setFiles((prev) => prev.filter((_, i) => i !== index))
+    setFiles((prev) => [...prev, ...newFiles])
+    setErrorMessage("")
   }
+}
+
+const removeFile = (index: number) => {
+  setFiles((prev) => prev.filter((_, i) => i !== index))
+}
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
