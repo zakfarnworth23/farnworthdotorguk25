@@ -8,16 +8,40 @@ import { AlertCircle } from "lucide-react"
 export default async function AdminPage() {
   const supabase = await createClient()
 
-  const { count: blogCount, error: blogError } = await supabase
-    .from("blog_posts")
-    .select("*", { count: "exact", head: true })
+  let blogCount = 0
+  let pressCount = 0
+  let hasError = false
 
-  const { count: pressCount, error: pressError } = await supabase
-    .from("press_statements")
-    .select("*", { count: "exact", head: true })
+  try {
+    const { count: blogCountResult, error: blogError } = await supabase
+      .from("blog_posts")
+      .select("*", { count: "exact", head: true })
+
+    if (blogError) {
+      hasError = true
+    } else {
+      blogCount = blogCountResult || 0
+    }
+  } catch (error) {
+    hasError = true
+  }
+
+  try {
+    const { count: pressCountResult, error: pressError } = await supabase
+      .from("press_statements")
+      .select("*", { count: "exact", head: true })
+
+    if (pressError) {
+      hasError = true
+    } else {
+      pressCount = pressCountResult || 0
+    }
+  } catch (error) {
+    hasError = true
+  }
 
   // Show setup instructions if tables don't exist
-  if (blogError || pressError) {
+  if (hasError) {
     return (
       <div className="space-y-8">
         <div>
@@ -62,7 +86,7 @@ export default async function AdminPage() {
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              <p className="text-2xl font-bold">{blogCount || 0} Posts</p>
+              <p className="text-2xl font-bold">{blogCount} Posts</p>
               <Button asChild>
                 <Link href="/admin/blog">Manage Blog Posts</Link>
               </Button>
@@ -77,7 +101,7 @@ export default async function AdminPage() {
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              <p className="text-2xl font-bold">{pressCount || 0} Statements</p>
+              <p className="text-2xl font-bold">{pressCount} Statements</p>
               <Button asChild>
                 <Link href="/admin/press">Manage Press Statements</Link>
               </Button>
