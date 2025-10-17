@@ -2,13 +2,25 @@ import { createClient } from "@/lib/supabase/server"
 import { BlogPostForm } from "@/components/blog-post-form"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { AlertCircle } from "lucide-react"
-import { notFound } from "next/navigation"
+import { notFound, redirect } from "next/navigation"
 
 export default async function EditBlogPostPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
+
+  if (id === "new") {
+    redirect("/admin/blog/new")
+  }
+
   const supabase = await createClient()
 
-  const { data: post, error } = await supabase.from("blog_posts").select("*").eq("id", id).single()
+  let post, error
+  try {
+    const result = await supabase.from("blog_posts").select("*").eq("id", id).single()
+    post = result.data
+    error = result.error
+  } catch (e) {
+    error = e
+  }
 
   // Show setup instructions if table doesn't exist
   if (error && error.code === "PGRST205") {

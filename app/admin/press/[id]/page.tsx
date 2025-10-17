@@ -2,13 +2,25 @@ import { createClient } from "@/lib/supabase/server"
 import { PressStatementForm } from "@/components/press-statement-form"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { AlertCircle } from "lucide-react"
-import { notFound } from "next/navigation"
+import { notFound, redirect } from "next/navigation"
 
 export default async function EditPressStatementPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
+
+  if (id === "new") {
+    redirect("/admin/press/new")
+  }
+
   const supabase = await createClient()
 
-  const { data: statement, error } = await supabase.from("press_statements").select("*").eq("id", id).single()
+  let statement, error
+  try {
+    const result = await supabase.from("press_statements").select("*").eq("id", id).single()
+    statement = result.data
+    error = result.error
+  } catch (e) {
+    error = e
+  }
 
   // Show setup instructions if table doesn't exist
   if (error && error.code === "PGRST205") {
