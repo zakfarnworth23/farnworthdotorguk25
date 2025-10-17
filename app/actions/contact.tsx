@@ -1,10 +1,17 @@
 "use server"
 
+interface Attachment {
+  name: string
+  contentType: string
+  contentBytes: string
+}
+
 interface ContactFormData {
   name: string
   email: string
   organization: string
   message: string
+  attachments?: Attachment[]
 }
 
 interface ContactFormResult {
@@ -69,11 +76,27 @@ async function getAccessToken(): Promise<string> {
   return data.access_token
 }
 
-async function sendEmail(accessToken: string, to: string, subject: string, body: string): Promise<void> {
+async function sendEmail(
+  accessToken: string,
+  to: string,
+  subject: string,
+  body: string,
+  attachments?: Attachment[],
+): Promise<void> {
   const senderEmail = process.env.MICROSOFT_SENDER_EMAIL
 
   if (!senderEmail) {
     throw new Error("MICROSOFT_SENDER_EMAIL not configured")
+  }
+
+  if (attachments && attachments.length > 0) {
+    console.log("[v0] Sending email with attachments:", attachments.length)
+    const totalSize = attachments.reduce((sum, att) => {
+      const size = (att.contentBytes.length * 3) / 4 // Approximate base64 decoded size
+      console.log(`[v0] Attachment: ${att.name}, size: ${(size / 1024 / 1024).toFixed(2)}MB`)
+      return sum + size
+    }, 0)
+    console.log(`[v0] Total attachment size: ${(totalSize / 1024 / 1024).toFixed(2)}MB`)
   }
 
   const graphEndpoint = `https://graph.microsoft.com/v1.0/users/${senderEmail}/sendMail`
@@ -92,8 +115,20 @@ async function sendEmail(accessToken: string, to: string, subject: string, body:
           },
         },
       ],
+      ...(attachments &&
+        attachments.length > 0 && {
+          attachments: attachments.map((att) => ({
+            "@odata.type": "#microsoft.graph.fileAttachment",
+            name: att.name,
+            contentType: att.contentType,
+            contentBytes: att.contentBytes,
+          })),
+        }),
     },
   }
+
+  const payloadSize = JSON.stringify(emailPayload).length
+  console.log(`[v0] Email payload size: ${(payloadSize / 1024 / 1024).toFixed(2)}MB`)
 
   const response = await fetch(graphEndpoint, {
     method: "POST",
@@ -107,7 +142,13 @@ async function sendEmail(accessToken: string, to: string, subject: string, body:
   if (!response.ok) {
     const errorText = await response.text()
     console.error("[v0] Failed to send email:", errorText)
-    throw new Error("Failed to send email")
+    try {
+      const errorJson = JSON.parse(errorText)
+      console.error("[v0] Error details:", JSON.stringify(errorJson, null, 2))
+    } catch (e) {
+      // Error text is not JSON
+    }
+    throw new Error(`Failed to send email: ${errorText}`)
   }
 }
 
@@ -118,8 +159,30 @@ export async function submitContactForm(formData: ContactFormData): Promise<Cont
       return { success: false, error: "Please fill in all required fields" }
     }
 
+    if (formData.attachments && formData.attachments.length > 0) {
+      const totalSize = formData.attachments.reduce((sum, att) => {
+        return sum + (att.contentBytes.length * 3) / 4 // Approximate decoded size
+      }, 0)
+
+      const totalSizeMB = totalSize / 1024 / 1024
+      console.log(`[v0] Total attachment size: ${totalSizeMB.toFixed(2)}MB`)
+
+      // Microsoft Graph has a 4MB limit for sendMail endpoint
+      if (totalSizeMB > 3.5) {
+        return {
+          success: false,
+          error: `Total attachment size is ${totalSizeMB.toFixed(1)}MB. Please remove some attachments to get under the 3.5MB limit.`,
+        }
+      }
+    }
+
     // Get Microsoft Graph access token
     const accessToken = await getAccessToken()
+
+    const attachmentInfo =
+      formData.attachments && formData.attachments.length > 0
+        ? `<p><strong>Attachments:</strong> ${formData.attachments.length} file(s)</p>`
+        : ""
 
     const notificationBody = `
       <html>
@@ -132,6 +195,7 @@ export async function submitContactForm(formData: ContactFormData): Promise<Cont
             <p><strong>Name:</strong> ${formData.name}</p>
             <p><strong>Email:</strong> ${formData.email}</p>
             <p><strong>Organization:</strong> ${formData.organization || "Not provided"}</p>
+            ${attachmentInfo}
             <p><strong>Message:</strong></p>
             <p style="white-space: pre-wrap;">${formData.message}</p>
           </div>
@@ -147,7 +211,13 @@ export async function submitContactForm(formData: ContactFormData): Promise<Cont
       </html>
     `
 
-    await sendEmail(accessToken, "zak@farnworth.org.uk", `New Contact Form: ${formData.name}`, notificationBody)
+    await sendEmail(
+      accessToken,
+      "zak@farnworth.org.uk",
+      `New Contact Form: ${formData.name}`,
+      notificationBody,
+      formData.attachments,
+    )
 
     const thankYouBody = `
       <html>
@@ -178,6 +248,8 @@ export async function submitContactForm(formData: ContactFormData): Promise<Cont
     return { success: true }
   } catch (error) {
     console.error("[v0] Contact form submission error:", error)
+    const errorMessage = error instanceof Error ? error.message : "Unknown error"
+    console.error("[v0] Error details:", errorMessage)
     return {
       success: false,
       error: "Failed to send message. Please try emailing directly at zak@farnworth.org.uk",
