@@ -157,7 +157,7 @@ export async function submitContactForm(formData: ContactFormData): Promise<Cont
             <p><strong>Your message:</strong></p>
             <p style="white-space: pre-wrap;">${formData.message}</p>
           </div>
-          <p>Best regards,<br/>Zak Farnworth<br/>ICT Technician</p>
+          <p>Best regards,<br/>Zak Farnworth<br/></p>
           <hr style="border: none; border-top: 1px solid #e0e0e0; margin: 30px 0;" />
           <p style="color: #7f8c8d; font-size: 12px;">
             Office of Zak Farnworth<br/>
