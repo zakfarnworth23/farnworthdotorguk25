@@ -121,7 +121,6 @@ export async function submitContactForm(formData: ContactFormData): Promise<Cont
     // Get Microsoft Graph access token
     const accessToken = await getAccessToken()
 
-    // Send notification email to you
     const notificationBody = `
       <html>
         <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
@@ -140,12 +139,7 @@ export async function submitContactForm(formData: ContactFormData): Promise<Cont
       </html>
     `
 
-    await sendEmail(
-      accessToken,
-      process.env.MICROSOFT_SENDER_EMAIL!,
-      `New Contact Form: ${formData.name}`,
-      notificationBody,
-    )
+    await sendEmail(accessToken, "zak@farnworth.org.uk", `New Contact Form: ${formData.name}`, notificationBody)
 
     // Send automatic thank you email to submitter
     const thankYouBody = `
