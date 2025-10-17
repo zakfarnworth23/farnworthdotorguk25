@@ -124,6 +124,9 @@ export async function submitContactForm(formData: ContactFormData): Promise<Cont
     const notificationBody = `
       <html>
         <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+          <div style="text-align: center; margin-bottom: 30px;">
+            <img src="https://farnworth.org.uk/office-logo.jpg" alt="Office of Zak Farnworth" style="max-width: 200px; height: auto;" />
+          </div>
           <h2 style="color: #2c3e50;">New Contact Form Submission</h2>
           <div style="background-color: #f8f9fa; padding: 20px; border-radius: 5px; margin: 20px 0;">
             <p><strong>Name:</strong> ${formData.name}</p>
@@ -141,10 +144,12 @@ export async function submitContactForm(formData: ContactFormData): Promise<Cont
 
     await sendEmail(accessToken, "zak@farnworth.org.uk", `New Contact Form: ${formData.name}`, notificationBody)
 
-    // Send automatic thank you email to submitter
     const thankYouBody = `
       <html>
         <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+          <div style="text-align: center; margin-bottom: 30px;">
+            <img src="https://farnworth.org.uk/office-logo.jpg" alt="Office of Zak Farnworth" style="max-width: 200px; height: auto;" />
+          </div>
           <h2 style="color: #2c3e50;">Thank you for contacting Zak Farnworth's correspondence line</h2>
           <p>Dear ${formData.name},</p>
           <p>Thank you for reaching out. I have received your message and will respond as soon as possible.</p>
