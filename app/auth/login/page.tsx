@@ -1,101 +1,80 @@
-"use client"
-
-import type React from "react"
-
-import { createClient } from "@/lib/supabase/client"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { useRouter } from "next/navigation"
-import { useState } from "react"
+import { createClient } from "@/lib/supabase/server"
+import { redirect } from "next/navigation"
 import Link from "next/link"
 
 export default function LoginPage() {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [error, setError] = useState<string | null>(null)
-  const [isLoading, setIsLoading] = useState(false)
-  const router = useRouter()
+  const signIn = async (formData: FormData) => {
+    "use server"
 
-  const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault()
-    console.log("[v0] Login attempt started")
+    const email = formData.get("email") as string
+    const password = formData.get("password") as string
+    const supabase = await createClient()
 
-    const supabase = createClient()
-    console.log("[v0] Supabase client created:", supabase ? "success" : "failed")
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    })
 
-    setIsLoading(true)
-    setError(null)
-
-    try {
-      console.log("[v0] Attempting sign in with email:", email)
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      })
-
-      console.log("[v0] Sign in response:", { data, error })
-
-      if (error) throw error
-
-      console.log("[v0] Login successful, redirecting to /admin")
-      router.push("/admin")
-      router.refresh()
-    } catch (error: unknown) {
-      console.error("[v0] Login error:", error)
-      setError(error instanceof Error ? error.message : "An error occurred")
-    } finally {
-      setIsLoading(false)
+    if (error) {
+      redirect("/auth/login?error=" + encodeURIComponent(error.message))
     }
+
+    redirect("/admin")
   }
 
   return (
-    <div className="flex min-h-screen w-full items-center justify-center p-6">
-      <div className="w-full max-w-sm">
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-2xl">Admin Login</CardTitle>
-            <CardDescription>Enter your credentials to access the admin dashboard</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <form onSubmit={handleLogin}>
-              <div className="flex flex-col gap-6">
-                <div className="grid gap-2">
-                  <Label htmlFor="email">Email</Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    placeholder="admin@example.com"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                </div>
-                <div className="grid gap-2">
-                  <Label htmlFor="password">Password</Label>
-                  <Input
-                    id="password"
-                    type="password"
-                    required
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                </div>
-                {error && <p className="text-sm text-destructive">{error}</p>}
-                <Button type="submit" className="w-full" disabled={isLoading}>
-                  {isLoading ? "Logging in..." : "Login"}
-                </Button>
-                <p className="text-center text-sm text-muted-foreground">
-                  Need an account?{" "}
-                  <Link href="/auth/signup" className="underline hover:text-foreground">
-                    Sign up
-                  </Link>
-                </p>
-              </div>
-            </form>
-          </CardContent>
-        </Card>
+    <div className="min-h-screen flex items-center justify-center bg-background px-4">
+      <div className="w-full max-w-md space-y-8">
+        <div className="text-center">
+          <h1 className="text-4xl font-bold tracking-tight">Admin Login</h1>
+          <p className="mt-2 text-muted-foreground">Sign in to access the admin dashboard</p>
+        </div>
+
+        <form action={signIn} className="mt-8 space-y-6">
+          <div className="space-y-4">
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium mb-2">
+                Email
+              </label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                required
+                className="w-full px-4 py-2 border border-border rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-foreground"
+                placeholder="your@email.com"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="password" className="block text-sm font-medium mb-2">
+                Password
+              </label>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                required
+                className="w-full px-4 py-2 border border-border rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-foreground"
+                placeholder="••••••••"
+              />
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            className="w-full py-3 px-4 bg-foreground text-background rounded-lg font-medium hover:opacity-90 transition-opacity"
+          >
+            Sign In
+          </button>
+
+          <p className="text-center text-sm text-muted-foreground">
+            Need an account?{" "}
+            <Link href="/auth/signup" className="underline hover:text-foreground">
+              Sign up
+            </Link>
+          </p>
+        </form>
       </div>
     </div>
   )
