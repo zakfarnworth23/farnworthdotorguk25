@@ -2,13 +2,46 @@ import { createClient } from "@/lib/supabase/server"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { AlertCircle } from "lucide-react"
 import Link from "next/link"
 import { formatDistanceToNow } from "date-fns"
 
 export default async function BlogPostsPage() {
   const supabase = await createClient()
 
-  const { data: posts } = await supabase.from("blog_posts").select("*").order("created_at", { ascending: false })
+  const { data: posts, error } = await supabase.from("blog_posts").select("*").order("created_at", { ascending: false })
+
+  // Show setup instructions if table doesn't exist
+  if (error) {
+    return (
+      <div className="space-y-6">
+        <div>
+          <h1 className="text-3xl font-bold">Blog Posts</h1>
+          <p className="text-muted-foreground mt-1">Set up your database to get started</p>
+        </div>
+
+        <Alert variant="destructive">
+          <AlertCircle className="h-4 w-4" />
+          <AlertTitle>Database Setup Required</AlertTitle>
+          <AlertDescription className="space-y-2">
+            <p>The blog_posts table hasn't been created yet. To set up your blog system:</p>
+            <ol className="list-decimal list-inside space-y-1 mt-2">
+              <li>Open the Files panel on the left side of v0</li>
+              <li>
+                Navigate to the <code className="bg-muted px-1 py-0.5 rounded">scripts</code> folder
+              </li>
+              <li>
+                Click on <code className="bg-muted px-1 py-0.5 rounded">001_create_blog_tables.sql</code>
+              </li>
+              <li>Click the Run button to execute the script</li>
+            </ol>
+            <p className="mt-2">Once the script runs successfully, refresh this page.</p>
+          </AlertDescription>
+        </Alert>
+      </div>
+    )
+  }
 
   return (
     <div className="space-y-6">
