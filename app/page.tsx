@@ -66,41 +66,33 @@ export default function Home() {
           ref={(el) => (sectionsRef.current[0] = el)}
           className="min-h-screen flex items-center justify-center opacity-0 relative"
         >
-          <div className="w-full max-w-4xl mx-auto text-center space-y-8">
-            {/* Main name display */}
-            <div className="space-y-4">
-              <h1 className="text-6xl sm:text-7xl lg:text-8xl font-light tracking-tight leading-none">
-                <span className="block text-foreground">Zak Farnworth</span>
-              </h1>
-
-              <p className="text-xl sm:text-2xl text-muted-foreground font-light">ICT Technician</p>
+          <div className="w-full max-w-4xl mx-auto text-center space-y-6">
+            <div className="space-y-2">
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-light tracking-tight">Zak Farnworth</h1>
+              <p className="text-xl sm:text-2xl text-muted-foreground">ICT Technician</p>
             </div>
 
-            {/* Tagline */}
-            <div className="max-w-2xl mx-auto pt-4">
-              <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed">
-                Leveraging technology for the{" "}
-                <span className="relative inline-block group/stars text-foreground font-medium">
-                  greater good
-                  <span className="absolute -top-1 -left-1 w-2 h-2 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300">
-                    <span className="absolute inset-0 animate-twinkle text-accent">✦</span>
-                  </span>
-                  <span className="absolute -top-2 right-2 w-2 h-2 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300 delay-100">
-                    <span className="absolute inset-0 animate-twinkle-delayed text-accent">✦</span>
-                  </span>
-                  <span className="absolute -bottom-1 left-4 w-2 h-2 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300 delay-200">
-                    <span className="absolute inset-0 animate-twinkle text-accent">✦</span>
-                  </span>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto pt-4">
+              Leveraging technology for the{" "}
+              <span className="relative inline-block group/stars text-foreground">
+                greater good
+                <span className="absolute -top-1 -left-1 w-2 h-2 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300">
+                  <span className="absolute inset-0 animate-twinkle text-accent">✦</span>
                 </span>
-              </p>
-            </div>
+                <span className="absolute -top-2 right-2 w-2 h-2 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300 delay-100">
+                  <span className="absolute inset-0 animate-twinkle-delayed text-accent">✦</span>
+                </span>
+                <span className="absolute -bottom-1 left-4 w-2 h-2 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300 delay-200">
+                  <span className="absolute inset-0 animate-twinkle text-accent">✦</span>
+                </span>
+              </span>
+            </p>
 
-            {/* Quick info */}
-            <div className="flex flex-wrap items-center justify-center gap-6 pt-8 text-sm text-muted-foreground">
+            <div className="flex flex-wrap items-center justify-center gap-6 pt-6 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
                 <div className="relative">
-                  <div className="w-2 h-2 bg-accent rounded-full animate-pulse" />
-                  <div className="absolute inset-0 w-2 h-2 bg-accent rounded-full animate-ping" />
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                  <div className="absolute inset-0 w-2 h-2 bg-green-500 rounded-full animate-ping" />
                 </div>
                 <span>Available for work</span>
               </div>
@@ -110,7 +102,6 @@ export default function Home() {
               <span>Albany Learning Trust</span>
             </div>
 
-            {/* Scroll indicator */}
             <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 animate-bounce-slow">
               <span className="text-xs text-muted-foreground font-mono tracking-wider">SCROLL</span>
               <div className="w-px h-12 bg-gradient-to-b from-muted-foreground/50 to-transparent" />
