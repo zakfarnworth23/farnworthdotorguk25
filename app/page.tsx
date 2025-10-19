@@ -38,13 +38,7 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-background text-foreground relative overflow-hidden">
-      <div className="fixed inset-0 -z-10">
-        <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-accent/5" />
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-accent/10 rounded-full blur-3xl animate-pulse-slow" />
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl animate-pulse-slower" />
-      </div>
-
+    <div className="min-h-screen bg-background text-foreground relative">
       <nav className="fixed left-8 top-1/2 -translate-y-1/2 z-10 hidden lg:block">
         <div className="flex flex-col gap-4">
           {["intro", "about", "work", "events", "media", "connect"].map((section) => (
@@ -60,46 +54,76 @@ export default function Home() {
         </div>
       </nav>
 
-      <main className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-16">
+      <main className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-16">
         <header
           id="intro"
           ref={(el) => (sectionsRef.current[0] = el)}
-          className="min-h-screen flex items-center opacity-0 relative"
+          className="min-h-screen flex items-center opacity-0"
         >
-          <div className="w-full max-w-3xl space-y-8">
-            <div className="space-y-4">
-              <h1 className="text-6xl sm:text-7xl lg:text-8xl font-light tracking-tight">Zak Farnworth</h1>
-              <p className="text-2xl sm:text-3xl text-muted-foreground">ICT Technician</p>
+          <div className="grid lg:grid-cols-5 gap-12 sm:gap-16 w-full">
+            <div className="lg:col-span-3 space-y-6 sm:space-y-8">
+              <div className="space-y-3 sm:space-y-2">
+                <div className="text-sm text-muted-foreground font-mono tracking-wider">PORTFOLIO / 2025</div>
+                <h1 className="text-5xl sm:text-6xl lg:text-7xl font-light tracking-tight">
+                  Zak
+                  <br />
+                  <span className="text-muted-foreground">Farnworth</span>
+                </h1>
+              </div>
+
+              <div className="space-y-6 max-w-md">
+                <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed">
+                  ICT Technician, passionate about leveraging technology for the
+                  <span className="relative inline-block group/stars text-foreground ml-1 z-10">
+                    greater good.
+                    <span className="absolute -top-1 -left-1 w-2 h-2 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300 -z-10">
+                      <span className="absolute inset-0 animate-twinkle">✦</span>
+                    </span>
+                    <span className="absolute -top-2 right-2 w-2 h-2 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300 delay-100 -z-10">
+                      <span className="absolute inset-0 animate-twinkle-delayed">✦</span>
+                    </span>
+                    <span className="absolute -bottom-1 left-4 w-2 h-2 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300 delay-200 -z-10">
+                      <span className="absolute inset-0 animate-twinkle">✦</span>
+                    </span>
+                    <span className="absolute -bottom-2 right-6 w-2 h-2 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300 delay-150 -z-10">
+                      <span className="absolute inset-0 animate-twinkle-delayed">✦</span>
+                    </span>
+                  </span>
+                </p>
+
+                <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 text-sm text-muted-foreground">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                    Available for work
+                  </div>
+                  <div>Bolton, United Kingdom.</div>
+                </div>
+              </div>
             </div>
 
-            <p className="text-xl text-muted-foreground max-w-2xl leading-relaxed">
-              Leveraging technology for the{" "}
-              <span className="relative inline-block group/stars text-foreground">
-                greater good
-                <span className="absolute -top-1 -left-1 w-2 h-2 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300">
-                  <span className="absolute inset-0 animate-twinkle text-accent">✦</span>
-                </span>
-                <span className="absolute -top-2 right-2 w-2 h-2 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300 delay-100">
-                  <span className="absolute inset-0 animate-twinkle-delayed text-accent">✦</span>
-                </span>
-                <span className="absolute -bottom-1 left-4 w-2 h-2 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300 delay-200">
-                  <span className="absolute inset-0 animate-twinkle text-accent">✦</span>
-                </span>
-              </span>
-            </p>
-
-            <div className="flex flex-wrap items-center gap-6 pt-4 text-sm text-muted-foreground">
-              <div className="flex items-center gap-2">
-                <div className="relative">
-                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                  <div className="absolute inset-0 w-2 h-2 bg-green-500 rounded-full animate-ping" />
+            <div className="lg:col-span-2 flex flex-col justify-end space-y-6 sm:space-y-8 mt-8 lg:mt-0">
+              <div className="space-y-4">
+                <div className="text-sm text-muted-foreground font-mono">CURRENTLY</div>
+                <div className="space-y-2">
+                  <div className="text-foreground">ICT Technician</div>
+                  <div className="text-muted-foreground">@ Albany Learning Trust</div>
+                  <div className="text-xs text-muted-foreground">March 2025 — Present</div>
                 </div>
-                <span>Available for work</span>
               </div>
-              <span className="text-muted-foreground/50">•</span>
-              <span>Bolton, UK</span>
-              <span className="text-muted-foreground/50">•</span>
-              <span>Albany Learning Trust</span>
+
+              <div className="space-y-4">
+                <div className="text-sm text-muted-foreground font-mono">FOCUS</div>
+                <div className="flex flex-wrap gap-2">
+                  {["Active Directory", "Microsoft 365", "Microsoft Intune", "HaloITSM", "Powershell"].map((skill) => (
+                    <span
+                      key={skill}
+                      className="px-3 py-1 text-xs border border-border rounded-full hover:border-muted-foreground/50 transition-colors duration-300"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </header>
@@ -541,7 +565,7 @@ export default function Home() {
                   >
                     <path
                       fillRule="evenodd"
-                      d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707a1 1 0 001.414 0zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                      d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
                       clipRule="evenodd"
                     />
                   </svg>
