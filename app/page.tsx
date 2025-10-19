@@ -64,96 +64,50 @@ export default function Home() {
         <header
           id="intro"
           ref={(el) => (sectionsRef.current[0] = el)}
-          className="min-h-screen flex items-center opacity-0 relative"
+          className="min-h-screen flex items-center justify-center opacity-0 relative"
         >
-          <div className="w-full space-y-16">
-            {/* Main hero content */}
-            <div className="space-y-12">
-              {/* Eyebrow text */}
-              <div className="flex items-center gap-4">
-                <div className="h-px w-12 bg-gradient-to-r from-transparent to-accent" />
-                <span className="text-xs tracking-[0.3em] text-muted-foreground font-mono uppercase">
-                  Portfolio 2025
-                </span>
-              </div>
+          <div className="w-full max-w-4xl mx-auto text-center space-y-8">
+            {/* Main name display */}
+            <div className="space-y-4">
+              <h1 className="text-6xl sm:text-7xl lg:text-8xl font-light tracking-tight leading-none">
+                <span className="block text-foreground">Zak Farnworth</span>
+              </h1>
 
-              {/* Large name display */}
-              <div className="space-y-6">
-                <h1 className="text-7xl sm:text-8xl lg:text-9xl font-light tracking-tighter leading-none">
-                  <span className="block text-foreground">Zak</span>
-                  <span className="block bg-gradient-to-r from-foreground via-accent to-foreground bg-clip-text text-transparent animate-gradient">
-                    Farnworth
-                  </span>
-                </h1>
-
-                <div className="flex items-center gap-4 text-xl sm:text-2xl text-muted-foreground font-light">
-                  <div className="h-px w-8 bg-muted-foreground/30" />
-                  <span>ICT Technician</span>
-                </div>
-              </div>
-
-              {/* Tagline with animation */}
-              <div className="max-w-2xl">
-                <p className="text-2xl sm:text-3xl lg:text-4xl font-light leading-relaxed text-balance">
-                  Leveraging technology for the{" "}
-                  <span className="relative inline-block group/stars text-accent font-normal">
-                    greater good
-                    <span className="absolute -inset-2 bg-accent/10 blur-xl opacity-0 group-hover/stars:opacity-100 transition-opacity duration-500 -z-10" />
-                    <span className="absolute -top-2 -left-2 w-3 h-3 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300 -z-10">
-                      <span className="absolute inset-0 animate-twinkle text-accent">✦</span>
-                    </span>
-                    <span className="absolute -top-3 right-3 w-3 h-3 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300 delay-100 -z-10">
-                      <span className="absolute inset-0 animate-twinkle-delayed text-accent">✦</span>
-                    </span>
-                    <span className="absolute -bottom-2 left-6 w-3 h-3 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300 delay-200 -z-10">
-                      <span className="absolute inset-0 animate-twinkle text-accent">✦</span>
-                    </span>
-                  </span>
-                </p>
-              </div>
+              <p className="text-xl sm:text-2xl text-muted-foreground font-light">ICT Technician</p>
             </div>
 
-            {/* Bottom info grid */}
-            <div className="grid md:grid-cols-3 gap-8 pt-8 border-t border-border/50">
-              {/* Location & Status */}
-              <div className="space-y-4">
-                <div className="text-xs tracking-[0.2em] text-muted-foreground font-mono uppercase">Location</div>
-                <div className="space-y-2">
-                  <div className="flex items-center gap-3">
-                    <div className="relative">
-                      <div className="w-2 h-2 bg-accent rounded-full animate-pulse" />
-                      <div className="absolute inset-0 w-2 h-2 bg-accent rounded-full animate-ping" />
-                    </div>
-                    <span className="text-sm text-foreground">Available for work</span>
-                  </div>
-                  <div className="text-muted-foreground">Bolton, United Kingdom</div>
-                </div>
-              </div>
+            {/* Tagline */}
+            <div className="max-w-2xl mx-auto pt-4">
+              <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed">
+                Leveraging technology for the{" "}
+                <span className="relative inline-block group/stars text-foreground font-medium">
+                  greater good
+                  <span className="absolute -top-1 -left-1 w-2 h-2 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300">
+                    <span className="absolute inset-0 animate-twinkle text-accent">✦</span>
+                  </span>
+                  <span className="absolute -top-2 right-2 w-2 h-2 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300 delay-100">
+                    <span className="absolute inset-0 animate-twinkle-delayed text-accent">✦</span>
+                  </span>
+                  <span className="absolute -bottom-1 left-4 w-2 h-2 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300 delay-200">
+                    <span className="absolute inset-0 animate-twinkle text-accent">✦</span>
+                  </span>
+                </span>
+              </p>
+            </div>
 
-              {/* Current Role */}
-              <div className="space-y-4">
-                <div className="text-xs tracking-[0.2em] text-muted-foreground font-mono uppercase">Currently</div>
-                <div className="space-y-1">
-                  <div className="text-foreground font-medium">ICT Technician</div>
-                  <div className="text-muted-foreground">Albany Learning Trust</div>
-                  <div className="text-xs text-muted-foreground/70">March 2025 — Present</div>
+            {/* Quick info */}
+            <div className="flex flex-wrap items-center justify-center gap-6 pt-8 text-sm text-muted-foreground">
+              <div className="flex items-center gap-2">
+                <div className="relative">
+                  <div className="w-2 h-2 bg-accent rounded-full animate-pulse" />
+                  <div className="absolute inset-0 w-2 h-2 bg-accent rounded-full animate-ping" />
                 </div>
+                <span>Available for work</span>
               </div>
-
-              {/* Key Skills */}
-              <div className="space-y-4">
-                <div className="text-xs tracking-[0.2em] text-muted-foreground font-mono uppercase">Expertise</div>
-                <div className="flex flex-wrap gap-2">
-                  {["Active Directory", "Microsoft 365", "Intune", "PowerShell"].map((skill) => (
-                    <span
-                      key={skill}
-                      className="px-3 py-1.5 text-xs border border-border/50 rounded-full hover:border-accent/50 hover:text-accent transition-all duration-300"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </div>
+              <span className="text-muted-foreground/50">•</span>
+              <span>Bolton, UK</span>
+              <span className="text-muted-foreground/50">•</span>
+              <span>Albany Learning Trust</span>
             </div>
 
             {/* Scroll indicator */}
@@ -601,7 +555,7 @@ export default function Home() {
                   >
                     <path
                       fillRule="evenodd"
-                      d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                      d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707a1 1 0 001.414 0zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
                       clipRule="evenodd"
                     />
                   </svg>
