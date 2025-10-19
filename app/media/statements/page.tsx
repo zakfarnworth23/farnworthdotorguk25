@@ -1,4 +1,3 @@
-
 "use client"
 
 import Link from "next/link"
@@ -70,13 +69,79 @@ export default function MediaCenter() {
             <div className="space-y-2">
               <div className="text-sm text-muted-foreground font-mono tracking-wider">MEDIA CENTER</div>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight">
-                Statements</span>
+                Press & <span className="text-muted-foreground">Resources</span>
               </h1>
             </div>
             <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
-              View all Statements released by the Office of Zak Farnworth, on behalf of Zak Farnworth.
+              Professional resources for external trusts, schools, and media inquiries. All materials are available for
+              download and use with proper attribution.
             </p>
           </header>
+
+          <section className="space-y-8">
+            <div className="flex items-end justify-between">
+              <h2 className="text-2xl sm:text-3xl font-light">Curriculum Vitae</h2>
+              <div className="text-sm text-muted-foreground font-mono">PDF</div>
+            </div>
+
+            <div className="grid sm:grid-cols-2 gap-4">
+              <a
+                href="/cv/zak-farnworth-cv.pdf"
+                download
+                className="group p-6 border border-border rounded-lg hover:border-muted-foreground/50 transition-all duration-300 hover:shadow-sm"
+              >
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <div className="text-foreground group-hover:text-muted-foreground transition-colors duration-300">
+                      Full CV
+                    </div>
+                    <svg
+                      className="w-5 h-5 text-muted-foreground group-hover:translate-y-1 transition-transform duration-300"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                      />
+                    </svg>
+                  </div>
+                  <div className="text-sm text-muted-foreground">Complete professional history and qualifications</div>
+                </div>
+              </a>
+
+              <a
+                href="/cv/zak-farnworth-cv-summary.pdf"
+                download
+                className="group p-6 border border-border rounded-lg hover:border-muted-foreground/50 transition-all duration-300 hover:shadow-sm"
+              >
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <div className="text-foreground group-hover:text-muted-foreground transition-colors duration-300">
+                      CV Summary
+                    </div>
+                    <svg
+                      className="w-5 h-5 text-muted-foreground group-hover:translate-y-1 transition-transform duration-300"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                      />
+                    </svg>
+                  </div>
+                  <div className="text-sm text-muted-foreground">One-page overview of key experience</div>
+                </div>
+              </a>
+            </div>
+          </section>
 
           <section className="space-y-8">
             <div className="flex items-end justify-between">
