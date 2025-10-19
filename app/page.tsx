@@ -64,15 +64,15 @@ export default function Home() {
         <header
           id="intro"
           ref={(el) => (sectionsRef.current[0] = el)}
-          className="min-h-screen flex items-center justify-center opacity-0 relative"
+          className="min-h-screen flex items-center opacity-0 relative"
         >
-          <div className="w-full max-w-4xl mx-auto text-center space-y-6">
-            <div className="space-y-2">
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-light tracking-tight">Zak Farnworth</h1>
-              <p className="text-xl sm:text-2xl text-muted-foreground">ICT Technician</p>
+          <div className="w-full max-w-3xl space-y-8">
+            <div className="space-y-4">
+              <h1 className="text-6xl sm:text-7xl lg:text-8xl font-light tracking-tight">Zak Farnworth</h1>
+              <p className="text-2xl sm:text-3xl text-muted-foreground">ICT Technician</p>
             </div>
 
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto pt-4">
+            <p className="text-xl text-muted-foreground max-w-2xl leading-relaxed">
               Leveraging technology for the{" "}
               <span className="relative inline-block group/stars text-foreground">
                 greater good
@@ -88,7 +88,7 @@ export default function Home() {
               </span>
             </p>
 
-            <div className="flex flex-wrap items-center justify-center gap-6 pt-6 text-sm text-muted-foreground">
+            <div className="flex flex-wrap items-center gap-6 pt-4 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
                 <div className="relative">
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
@@ -100,11 +100,6 @@ export default function Home() {
               <span>Bolton, UK</span>
               <span className="text-muted-foreground/50">•</span>
               <span>Albany Learning Trust</span>
-            </div>
-
-            <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 animate-bounce-slow">
-              <span className="text-xs text-muted-foreground font-mono tracking-wider">SCROLL</span>
-              <div className="w-px h-12 bg-gradient-to-b from-muted-foreground/50 to-transparent" />
             </div>
           </div>
         </header>
