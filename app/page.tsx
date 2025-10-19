@@ -38,7 +38,13 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-background text-foreground relative">
+    <div className="min-h-screen bg-background text-foreground relative overflow-hidden">
+      <div className="fixed inset-0 -z-10">
+        <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-accent/5" />
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-accent/10 rounded-full blur-3xl animate-pulse-slow" />
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl animate-pulse-slower" />
+      </div>
+
       <nav className="fixed left-8 top-1/2 -translate-y-1/2 z-10 hidden lg:block">
         <div className="flex flex-col gap-4">
           {["intro", "about", "work", "events", "media", "connect"].map((section) => (
@@ -54,76 +60,106 @@ export default function Home() {
         </div>
       </nav>
 
-      <main className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-16">
+      <main className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-16">
         <header
           id="intro"
           ref={(el) => (sectionsRef.current[0] = el)}
-          className="min-h-screen flex items-center opacity-0"
+          className="min-h-screen flex items-center opacity-0 relative"
         >
-          <div className="grid lg:grid-cols-5 gap-12 sm:gap-16 w-full">
-            <div className="lg:col-span-3 space-y-6 sm:space-y-8">
-              <div className="space-y-3 sm:space-y-2">
-                <div className="text-sm text-muted-foreground font-mono tracking-wider">PORTFOLIO / 2025</div>
-                <h1 className="text-5xl sm:text-6xl lg:text-7xl font-light tracking-tight">
-                  Zak
-                  <br />
-                  <span className="text-muted-foreground">Farnworth</span>
-                </h1>
+          <div className="w-full space-y-16">
+            {/* Main hero content */}
+            <div className="space-y-12">
+              {/* Eyebrow text */}
+              <div className="flex items-center gap-4">
+                <div className="h-px w-12 bg-gradient-to-r from-transparent to-accent" />
+                <span className="text-xs tracking-[0.3em] text-muted-foreground font-mono uppercase">
+                  Portfolio 2025
+                </span>
               </div>
 
-              <div className="space-y-6 max-w-md">
-                <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed">
-                  ICT Technician, passionate about leveraging technology for the
-                  <span className="relative inline-block group/stars text-foreground ml-1 z-10">
-                    greater good.
-                    <span className="absolute -top-1 -left-1 w-2 h-2 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300 -z-10">
-                      <span className="absolute inset-0 animate-twinkle">✦</span>
+              {/* Large name display */}
+              <div className="space-y-6">
+                <h1 className="text-7xl sm:text-8xl lg:text-9xl font-light tracking-tighter leading-none">
+                  <span className="block text-foreground">Zak</span>
+                  <span className="block bg-gradient-to-r from-foreground via-accent to-foreground bg-clip-text text-transparent animate-gradient">
+                    Farnworth
+                  </span>
+                </h1>
+
+                <div className="flex items-center gap-4 text-xl sm:text-2xl text-muted-foreground font-light">
+                  <div className="h-px w-8 bg-muted-foreground/30" />
+                  <span>ICT Technician</span>
+                </div>
+              </div>
+
+              {/* Tagline with animation */}
+              <div className="max-w-2xl">
+                <p className="text-2xl sm:text-3xl lg:text-4xl font-light leading-relaxed text-balance">
+                  Leveraging technology for the{" "}
+                  <span className="relative inline-block group/stars text-accent font-normal">
+                    greater good
+                    <span className="absolute -inset-2 bg-accent/10 blur-xl opacity-0 group-hover/stars:opacity-100 transition-opacity duration-500 -z-10" />
+                    <span className="absolute -top-2 -left-2 w-3 h-3 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300 -z-10">
+                      <span className="absolute inset-0 animate-twinkle text-accent">✦</span>
                     </span>
-                    <span className="absolute -top-2 right-2 w-2 h-2 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300 delay-100 -z-10">
-                      <span className="absolute inset-0 animate-twinkle-delayed">✦</span>
+                    <span className="absolute -top-3 right-3 w-3 h-3 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300 delay-100 -z-10">
+                      <span className="absolute inset-0 animate-twinkle-delayed text-accent">✦</span>
                     </span>
-                    <span className="absolute -bottom-1 left-4 w-2 h-2 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300 delay-200 -z-10">
-                      <span className="absolute inset-0 animate-twinkle">✦</span>
-                    </span>
-                    <span className="absolute -bottom-2 right-6 w-2 h-2 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300 delay-150 -z-10">
-                      <span className="absolute inset-0 animate-twinkle-delayed">✦</span>
+                    <span className="absolute -bottom-2 left-6 w-3 h-3 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300 delay-200 -z-10">
+                      <span className="absolute inset-0 animate-twinkle text-accent">✦</span>
                     </span>
                   </span>
                 </p>
-
-                <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 text-sm text-muted-foreground">
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                    Available for work
-                  </div>
-                  <div>Bolton, United Kingdom.</div>
-                </div>
               </div>
             </div>
 
-            <div className="lg:col-span-2 flex flex-col justify-end space-y-6 sm:space-y-8 mt-8 lg:mt-0">
+            {/* Bottom info grid */}
+            <div className="grid md:grid-cols-3 gap-8 pt-8 border-t border-border/50">
+              {/* Location & Status */}
               <div className="space-y-4">
-                <div className="text-sm text-muted-foreground font-mono">CURRENTLY</div>
+                <div className="text-xs tracking-[0.2em] text-muted-foreground font-mono uppercase">Location</div>
                 <div className="space-y-2">
-                  <div className="text-foreground">ICT Technician</div>
-                  <div className="text-muted-foreground">@ Albany Learning Trust</div>
-                  <div className="text-xs text-muted-foreground">March 2025 — Present</div>
+                  <div className="flex items-center gap-3">
+                    <div className="relative">
+                      <div className="w-2 h-2 bg-accent rounded-full animate-pulse" />
+                      <div className="absolute inset-0 w-2 h-2 bg-accent rounded-full animate-ping" />
+                    </div>
+                    <span className="text-sm text-foreground">Available for work</span>
+                  </div>
+                  <div className="text-muted-foreground">Bolton, United Kingdom</div>
                 </div>
               </div>
 
+              {/* Current Role */}
               <div className="space-y-4">
-                <div className="text-sm text-muted-foreground font-mono">FOCUS</div>
+                <div className="text-xs tracking-[0.2em] text-muted-foreground font-mono uppercase">Currently</div>
+                <div className="space-y-1">
+                  <div className="text-foreground font-medium">ICT Technician</div>
+                  <div className="text-muted-foreground">Albany Learning Trust</div>
+                  <div className="text-xs text-muted-foreground/70">March 2025 — Present</div>
+                </div>
+              </div>
+
+              {/* Key Skills */}
+              <div className="space-y-4">
+                <div className="text-xs tracking-[0.2em] text-muted-foreground font-mono uppercase">Expertise</div>
                 <div className="flex flex-wrap gap-2">
-                  {["Active Directory", "Microsoft 365", "Microsoft Intune", "HaloITSM", "Powershell"].map((skill) => (
+                  {["Active Directory", "Microsoft 365", "Intune", "PowerShell"].map((skill) => (
                     <span
                       key={skill}
-                      className="px-3 py-1 text-xs border border-border rounded-full hover:border-muted-foreground/50 transition-colors duration-300"
+                      className="px-3 py-1.5 text-xs border border-border/50 rounded-full hover:border-accent/50 hover:text-accent transition-all duration-300"
                     >
                       {skill}
                     </span>
                   ))}
                 </div>
               </div>
+            </div>
+
+            {/* Scroll indicator */}
+            <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 animate-bounce-slow">
+              <span className="text-xs text-muted-foreground font-mono tracking-wider">SCROLL</span>
+              <div className="w-px h-12 bg-gradient-to-b from-muted-foreground/50 to-transparent" />
             </div>
           </div>
         </header>
