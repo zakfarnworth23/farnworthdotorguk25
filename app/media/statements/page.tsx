@@ -58,7 +58,7 @@ export default function StatementsPage() {
           <header className="space-y-6 text-center">
             <div className="flex justify-center">
               <Image
-                src="/office-logo.png"
+                src="/OOZF_Logo.png"
                 alt="Office of Zak Farnworth Logo"
                 width={80}
                 height={80}
