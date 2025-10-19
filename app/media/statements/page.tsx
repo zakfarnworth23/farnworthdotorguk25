@@ -18,28 +18,20 @@ export default function StatementsPage() {
 
   return (
     <div className="min-h-screen bg-white text-gray-900">
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200 shadow-sm">
-        <div className="max-w-5xl mx-auto px-6 sm:px-8 lg:px-16 py-3 flex justify-between items-center">
-          {/* Logo + Back Link */}
-          <div className="flex items-center gap-6">
-            {/* Office Logo */}
-            <Link href="/" className="flex items-center">
-              <div className="p-1 rounded-full bg-gray-100 border border-gray-200 shadow-md hover:shadow-lg transition-all duration-300">
-                <Image
-                  src="/office-logo.png"
-                  alt="Office Logo"
-                  width={64}
-                  height={64}
-                  className="rounded-full object-contain"
-                />
-              </div>
-            </Link>
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-sm border-b border-gray-200">
+        <div className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-16 py-4 flex justify-between items-center">
+          <div className="flex items-center gap-4">
+            {/* Plain logo in nav */}
+            <Image
+              src="/OOZF_Logo.png"
+              alt="Office Logo"
+              width={64}
+              height={64}
+            />
 
-            {/* Back Link */}
             <Link
               href="/"
-              className="group flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors duration-300 text-lg"
+              className="group flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors duration-300"
             >
               <svg
                 className="w-5 h-5 transform group-hover:-translate-x-1 transition-transform duration-300"
@@ -55,23 +47,20 @@ export default function StatementsPage() {
         </div>
       </nav>
 
-      {/* Main Content */}
-      <main className="max-w-5xl mx-auto px-6 sm:px-8 lg:px-16 pt-32 pb-20">
+      <main className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-16 pt-32 pb-20">
         <div className="space-y-16 sm:space-y-20">
-          {/* Header */}
-          <header className="space-y-6 text-center">
+          <header className="space-y-6">
             <div className="space-y-2">
               <div className="text-sm text-gray-500 font-mono tracking-wider">STATEMENTS</div>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight">
                 Press <span className="text-gray-500">Statements</span>
               </h1>
             </div>
-            <p className="text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto">
+            <p className="text-lg text-gray-600 leading-relaxed max-w-2xl">
               Official statements and announcements from the Office of Zak Farnworth.
             </p>
           </header>
 
-          {/* Statements List */}
           {statements.length === 0 ? (
             <div className="py-12 text-center">
               <p className="text-gray-500">No statements available at this time.</p>
@@ -120,8 +109,7 @@ export default function StatementsPage() {
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="max-w-5xl mx-auto px-6 sm:px-8 lg:px-16 py-12 border-t border-gray-200">
+      <footer className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-16 py-12 border-t border-gray-200">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div className="text-sm text-gray-500">© 2025 Zak Farnworth. All rights reserved.</div>
           <div className="text-xs text-gray-500">Office of Zak Farnworth</div>
