@@ -25,8 +25,8 @@ export default function StatementsPage() {
             <Image
               src="/OOZF_Logo.png"
               alt="Office Logo"
-              width={64}
-              height={64}
+              width={150}
+              height={150}
             />
 
             <Link
