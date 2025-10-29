@@ -2,10 +2,12 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { getSortedStatements } from "@/lib/statements-data"
+import { getStatements } from "@/lib/sanity/queries"
 
-export default function StatementsPage() {
-  const statements = getSortedStatements()
+export const revalidate = 60 // Revalidate every 60 seconds
+
+export default async function StatementsPage() {
+  const statements = await getStatements()
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString)
@@ -22,12 +24,7 @@ export default function StatementsPage() {
         <div className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-16 py-4 flex justify-between items-center">
           <div className="flex items-center gap-4">
             {/* Plain logo in nav */}
-            <Image
-              src="/OOZF_Logo.png"
-              alt="Office Logo"
-              width={170}
-              height={170}
-            />
+            <Image src="/OOZF_Logo.png" alt="Office Logo" width={170} height={170} />
 
             <Link
               href="/"
@@ -69,8 +66,8 @@ export default function StatementsPage() {
             <div className="space-y-1">
               {statements.map((statement) => (
                 <Link
-                  key={statement.slug}
-                  href={`/media/statements/${statement.slug}`}
+                  key={statement._id}
+                  href={`/media/statements/${statement.slug.current}`}
                   className="group block py-6 border-b border-gray-200 hover:border-gray-400 transition-all duration-300"
                 >
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
@@ -86,7 +83,7 @@ export default function StatementsPage() {
                       )}
                     </div>
                     <div className="flex items-center gap-3 text-sm text-gray-500 font-mono shrink-0">
-                      <time dateTime={statement.date}>{formatDate(statement.date)}</time>
+                      <time dateTime={statement.publishedAt}>{formatDate(statement.publishedAt)}</time>
                       <svg
                         className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300"
                         fill="none"

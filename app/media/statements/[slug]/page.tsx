@@ -1,15 +1,21 @@
 import Link from "next/link"
+import Image from "next/image"
 import { notFound } from "next/navigation"
-import { getStatementBySlug, statements } from "@/lib/statements-data"
+import { getStatementBySlug, getStatements } from "@/lib/sanity/queries"
+import { PortableText } from "@portabletext/react"
+import { urlFor } from "@/lib/sanity/client"
+
+export const revalidate = 60 // Revalidate every 60 seconds
 
 export async function generateStaticParams() {
+  const statements = await getStatements()
   return statements.map((statement) => ({
-    slug: statement.slug,
+    slug: statement.slug.current,
   }))
 }
 
-export default function StatementPage({ params }: { params: { slug: string } }) {
-  const statement = getStatementBySlug(params.slug)
+export default async function StatementPage({ params }: { params: { slug: string } }) {
+  const statement = await getStatementBySlug(params.slug)
 
   if (!statement) {
     notFound()
@@ -22,6 +28,32 @@ export default function StatementPage({ params }: { params: { slug: string } }) 
       month: "long",
       year: "numeric",
     })
+  }
+
+  const portableTextComponents = {
+    types: {
+      image: ({ value }: any) => {
+        if (!value?.asset?._ref) {
+          return null
+        }
+        return (
+          <div className="my-8">
+            <Image
+              src={urlFor(value).width(800).url() || "/placeholder.svg"}
+              alt={value.alt || "Statement image"}
+              width={800}
+              height={450}
+              className="rounded-lg"
+            />
+          </div>
+        )
+      },
+    },
+    block: {
+      h2: ({ children }: any) => <h2 className="text-2xl font-light text-foreground mt-12 mb-6">{children}</h2>,
+      h3: ({ children }: any) => <h3 className="text-xl font-light text-foreground mt-8 mb-4">{children}</h3>,
+      normal: ({ children }: any) => <p className="mb-6">{children}</p>,
+    },
   }
 
   return (
@@ -56,7 +88,7 @@ export default function StatementPage({ params }: { params: { slug: string } }) 
                     d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                   />
                 </svg>
-                <time dateTime={statement.date}>{formatDate(statement.date)}</time>
+                <time dateTime={statement.publishedAt}>{formatDate(statement.publishedAt)}</time>
               </div>
               <div className="flex items-center gap-2">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -72,22 +104,22 @@ export default function StatementPage({ params }: { params: { slug: string } }) 
             </div>
           </header>
 
+          {statement.mainImage && (
+            <div className="relative w-full h-[400px] rounded-lg overflow-hidden">
+              <Image
+                src={urlFor(statement.mainImage).width(1200).url() || "/placeholder.svg"}
+                alt={statement.title}
+                fill
+                className="object-cover"
+              />
+            </div>
+          )}
+
           <div className="prose prose-lg max-w-none space-y-6 text-muted-foreground leading-relaxed">
             <p className="text-xl text-foreground font-light">{statement.excerpt}</p>
 
             <div className="pt-8 space-y-6">
-              <p>
-                [Add your full statement content here. This is where you write the detailed information about your
-                statement.]
-              </p>
-
-              <p>
-                [You can add multiple paragraphs, lists, and other content to provide comprehensive information about
-                this statement.]
-              </p>
-
-              <h2 className="text-2xl font-light text-foreground mt-12 mb-6">Additional Information</h2>
-              <p>[Add any additional context, background, or related information here.]</p>
+              <PortableText value={statement.body} components={portableTextComponents} />
             </div>
           </div>
 
