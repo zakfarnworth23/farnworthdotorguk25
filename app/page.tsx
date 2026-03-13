@@ -91,13 +91,23 @@ export default function Home() {
                   </span>
                 </p>
 
-               <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 text-sm text-muted-foreground">
-  <div className="flex items-center gap-2">
-    <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-    Not available for work
-  </div>
-  <div>Bolton, United Kingdom.</div>
-  </div>
+                <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 text-sm text-muted-foreground">
+
+                  <div className="flex items-center gap-2">
+
+                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+
+                    Available for work
+
+                  </div>
+
+                  <div>Bolton, United Kingdom.</div>
+
+                </div>
+
+              </div>
+
+            </div>
 
             <div className="lg:col-span-2 flex flex-col justify-end space-y-6 sm:space-y-8 mt-8 lg:mt-0">
               <div className="space-y-4">
