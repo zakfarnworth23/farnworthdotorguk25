@@ -188,7 +188,7 @@ export async function submitContactForm(formData: ContactFormData): Promise<Cont
       <html>
         <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
           <div style="text-align: Left; margin-top: 20px; margin-bottom: 30px;">
-            <img src="https://assets.farnworth.org.uk/OOZF_Logo.png" alt="Office of Zak Farnworth" style="max-width: 400px; height: auto;" />
+            <img src="https://farnworth.org.uk/OOZF_Logo.png" alt="Office of Zak Farnworth" style="max-width: 400px; height: auto;" />
           </div>
           <h2 style="color: #2c3e50;">New Contact Form Submission</h2>
           <div style="background-color: #f8f9fa; padding: 20px; border-radius: 5px; margin: 20px 0;">
@@ -223,7 +223,7 @@ export async function submitContactForm(formData: ContactFormData): Promise<Cont
       <html>
         <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
           <div style="text-align: Left; margin-top: 20px; margin-bottom: 30px;">
-            <img src="https://assets.farnworth.org.uk/OOZF_Logo.png" alt="Office of Zak Farnworth" style="max-width: 400px; height: auto;" />
+            <img src="https://farnworth.org.uk/OOZF_Logo.png" alt="Office of Zak Farnworth" style="max-width: 400px; height: auto;" />
           </div>
           <h2 style="color: #2c3e50;">Thank you for contacting Zak Farnworth's correspondence line</h2>
           <p>Dear ${formData.name},</p>
