@@ -73,7 +73,7 @@ export default function Home() {
 
               <div className="space-y-6 max-w-md">
                 <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed">
-                  ICT Technician, passionate about leveraging technology for the
+                  Technical Systems Specialist, passionate about leveraging technology for the
                   <span className="relative inline-block group/stars text-foreground ml-1 z-10">
                     greater good.
                     <span className="absolute -top-1 -left-1 w-2 h-2 opacity-0 group-hover/stars:opacity-100 transition-opacity duration-300 -z-10">
@@ -113,9 +113,9 @@ export default function Home() {
               <div className="space-y-4">
                 <div className="text-sm text-muted-foreground font-mono">CURRENTLY</div>
                 <div className="space-y-2">
-                  <div className="text-foreground">ICT Technician</div>
-                  <div className="text-muted-foreground">@ Albany Learning Trust</div>
-                  <div className="text-xs text-muted-foreground">March 2025 — Present</div>
+                  <div className="text-foreground">Technical Systems Specialist</div>
+                  <div className="text-muted-foreground">@ The Quill C of E Trust</div>
+                  <div className="text-xs text-muted-foreground">December 2025 — Present</div>
                 </div>
               </div>
 
@@ -161,7 +161,7 @@ export default function Home() {
               <div className="lg:col-span-3 space-y-6">
                 <div className="space-y-4 text-lg text-muted-foreground leading-relaxed">
                   <p>
-                    I'm an ICT Technician based in Bolton, United Kingdom, with a passion for leveraging technology to
+                    I'm a Technical Systems Specialist based in Bolton, United Kingdom, with a passion for leveraging technology to
                     make a positive impact in education and beyond.
                   </p>
                   <p>
@@ -170,7 +170,7 @@ export default function Home() {
                     Commended' BCS award for IT Infrastructure.
                   </p>
                   <p>
-                    Currently, I'm working at Albany Learning Trust, where I continue to develop my expertise in Active
+                    Currently, I'm back at The Quill C of E Trust as a Technical Systems Specialist, where I continue to develop my expertise in Active
                     Directory, Microsoft 365, and modern IT infrastructure management.
                   </p>
                   <p className="text-foreground">
@@ -244,10 +244,10 @@ export default function Home() {
                 },
                 {
                   year: "2025",
-                  role: "ICT Technician",
-                  company: "ALbany Learning Trust",
-                  description: "",
-                  tech: ["Active Directory", "Microsoft 365", "Microsoft Deployment Toolkit", "Asset Management"],
+                  role: "Technical Systems Specialist",
+                  company: "The Quill C of E Trust",
+                  description: "Returned to lead technical systems management and infrastructure development.",
+                  tech: ["Active Directory", "Microsoft 365", "Microsoft Intune", "HaloITSM"],
                 },
               ].map((job, index) => (
                 <div

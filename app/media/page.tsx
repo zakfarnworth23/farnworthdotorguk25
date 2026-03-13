@@ -198,7 +198,7 @@ export default function MediaCenter() {
             <div className="space-y-6 p-6 border border-border rounded-lg">
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
-                  <strong className="text-foreground">Zak Farnworth</strong> is an ICT Technician based in Bolton,
+                  <strong className="text-foreground">Zak Farnworth</strong> is a Technical Systems Specialist based in Bolton,
                   United Kingdom, with a passion for leveraging technology to make a positive impact in education and
                   beyond.
                 </p>
@@ -208,7 +208,7 @@ export default function MediaCenter() {
                   recognized with a 'Highly Commended' BCS award for IT Infrastructure.
                 </p>
                 <p>
-                  Currently working at Albany Learning Trust, Zak continues to develop his expertise in Active
+                  Currently working at The Quill C of E Trust as a Technical Systems Specialist, Zak continues to develop his expertise in Active
                   Directory, Microsoft 365, and modern IT infrastructure management, focusing on solutions that improve
                   educational technology systems.
                 </p>
